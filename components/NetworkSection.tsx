@@ -186,11 +186,11 @@ export function NetworkSection() {
       }}>
         <p style={{
           fontFamily: 'var(--font-mono)',
-          fontSize: 'var(--text-xs)',
+          fontSize: 'var(--text-eyebrow)',
           letterSpacing: '0.2em',
           textTransform: 'uppercase',
           color: 'var(--silver-lo)',
-          marginBottom: '1.25rem',
+          marginBottom: '1.75rem',
         }}>
           Your input
         </p>

@@ -37,7 +37,7 @@ export function HowItWorks() {
 
         {/* Header */}
         <div className="mb-16 text-center">
-          <p className="type-eyebrow mb-4">How It Works</p>
+          <p className="type-eyebrow mb-6">How It Works</p>
           <h2
             className="font-bold tracking-tight"
             style={{

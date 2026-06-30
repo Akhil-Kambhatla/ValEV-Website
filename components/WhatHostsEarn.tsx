@@ -36,7 +36,7 @@ export function WhatHostsEarn() {
 
         {/* Header */}
         <div className="mb-12 text-center">
-          <p className="type-eyebrow mb-4">What Hosts Earn</p>
+          <p className="type-eyebrow mb-6">What Hosts Earn</p>
           <h2
             className="font-bold tracking-tight"
             style={{

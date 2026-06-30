@@ -90,7 +90,7 @@ export default function MapSection() {
           className="mb-10 text-center"
         >
           <p
-            className="text-xs font-semibold tracking-widest uppercase mb-3"
+            className="type-eyebrow mb-5"
             style={{ color: "var(--color-cyan)" }}
           >
             Coverage

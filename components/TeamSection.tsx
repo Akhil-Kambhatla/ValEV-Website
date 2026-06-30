@@ -15,7 +15,7 @@ export default function TeamSection() {
           className="mb-14 text-center"
         >
           <p
-            className="text-xs font-semibold tracking-widest uppercase mb-3"
+            className="type-eyebrow mb-5"
             style={{ color: "var(--color-cyan)" }}
           >
             The Team

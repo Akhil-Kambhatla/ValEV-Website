@@ -51,7 +51,7 @@ export function WhySection() {
       <div className="max-w-6xl mx-auto px-6 py-24">
         {/* Header */}
         <div className="mb-14 text-center">
-          <p className="type-eyebrow mb-4">Why ValEV</p>
+          <p className="type-eyebrow mb-6">Why ValEV</p>
           <h2
             className="font-bold tracking-tight"
             style={{

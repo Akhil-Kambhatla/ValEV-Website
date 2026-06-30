@@ -45,7 +45,7 @@ export function Footer() {
 
         {/* ── Navigate column ──────────────────────────────────────────── */}
         <div className="flex flex-col gap-3">
-          <p className="type-eyebrow mb-1">Navigate</p>
+          <p className="type-eyebrow mb-3">Navigate</p>
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
@@ -70,7 +70,7 @@ export function Footer() {
 
         {/* ── Contact column ───────────────────────────────────────────── */}
         <div className="flex flex-col gap-4">
-          <p className="type-eyebrow mb-1">Get in touch</p>
+          <p className="type-eyebrow mb-3">Get in touch</p>
 
           {/* WhatsApp — amber hover is one of the four allowed amber uses */}
           <a
