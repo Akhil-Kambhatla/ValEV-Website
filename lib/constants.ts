@@ -54,8 +54,8 @@ export const CONTACT = {
 export const NAV_LINKS = [
   { label: 'About',      href: '/about'      },
   { label: 'Network',    href: '/#network'   },
-  { label: 'Stations',   href: '/#stations'  },
   { label: 'Technology', href: '/technology'  },
+  { label: 'Partner',    href: '/partner'    },
   { label: 'Savings',    href: '/savings'    },
   { label: 'Contact',    href: '/#contact'   },
 ] as const
@@ -132,6 +132,21 @@ export const SAVINGS_CALC = {
   co2PerLitrePetrol:    2.31,   // kg CO2e per litre of petrol (IPCC factor)
   disclaimer:
     'an estimate, not a guarantee — fuel prices and EV efficiency vary by vehicle and usage.',
+} as const
+
+// ─── Partner page placeholder figures ────────────────────────────────────────
+// PLACEHOLDER FIGURES — replace with real numbers before launch.
+export const PARTNER_PLACEHOLDERS = {
+  // FOCO Franchise model
+  focoInvestmentFrom:  'from ₹X lakh',
+  focoSpaceNeeded:     '~2 car-park spaces (~550 sq ft)',
+  focoPowerSetup:      'Grid connection; ValEV-managed installation',
+  focoIdealLocations:  'Highways, commercial hubs, malls, offices, residential complexes',
+  focoPaybackPeriod:   'X–Y years (illustrative)',
+  focoAnnualReturn:    'X% per annum (illustrative)',
+  // Host / Location Partner model
+  hostEarningRate:     '₹X per kWh charged (indicative)',
+  hostMonthlyEarning:  '₹X,XXX–₹XX,XXX per month (illustrative)',
 } as const
 
 // ─── Team placeholders ────────────────────────────────────────────────────────

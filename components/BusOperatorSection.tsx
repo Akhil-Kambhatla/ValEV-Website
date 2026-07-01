@@ -36,11 +36,17 @@ const busImageLayer = (
       overflow: 'hidden',
     }}
   >
+    <style>{`
+      @media (max-width: 640px) {
+        .bus-backdrop-img { object-position: center bottom !important; }
+      }
+    `}</style>
     {/* Bus image — slightly reduced opacity so it reads as atmosphere */}
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
       src="/bus%20backdrop%20valev.png"
       alt=""
+      className="bus-backdrop-img"
       style={{
         position: 'absolute',
         inset: 0,

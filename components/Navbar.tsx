@@ -105,10 +105,9 @@ export function Navbar() {
 
         {/* CTA + hamburger */}
         <div className="flex items-center gap-4">
-          {/* "Host a Station" CTA — routes to the Host model in the Partner section */}
+          {/* "Host a Station" CTA — routes to the Host model on the Partner page */}
           <Link
-            href="/#partner"
-            onClick={(e) => handleAnchorClick(e, '/#partner')}
+            href="/partner#host"
             className="hidden md:inline-flex items-center px-5 py-2.5 rounded-md text-sm font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4 focus-visible:rounded-md"
             style={{
               fontFamily:      'var(--font-body)',
@@ -177,11 +176,8 @@ export function Navbar() {
             ))}
 
             <Link
-              href="/#partner"
-              onClick={(e) => {
-                setMobileOpen(false)
-                handleAnchorClick(e, '/#partner')
-              }}
+              href="/partner#host"
+              onClick={() => setMobileOpen(false)}
               className="mt-4 inline-flex items-center justify-center px-5 py-3 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
               style={{
                 fontFamily:      'var(--font-body)',

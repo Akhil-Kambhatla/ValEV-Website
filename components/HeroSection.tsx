@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { Logo } from './Logo'
@@ -224,18 +225,14 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 justify-center">
-            <button
-              onClick={() => {
-                document.getElementById('partner')?.scrollIntoView({ behavior: 'smooth' })
-              }}
+            <Link
+              href="/partner"
               className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
               style={{
                 fontFamily:      'var(--font-body)',
                 backgroundColor: 'var(--cyan)',
                 color:           'var(--bg-hero)',
                 fontSize:        'var(--text-body)',
-                border:          'none',
-                cursor:          'pointer',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLElement).style.boxShadow =
@@ -246,7 +243,7 @@ export function HeroSection() {
               }}
             >
               Partner with us
-            </button>
+            </Link>
 
             <a
               href="/technology"

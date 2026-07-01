@@ -5,21 +5,6 @@ import { useRef, useState, useEffect } from 'react'
 import { SectionWrapper } from './SectionWrapper'
 
 const NEON_CSS = `
-  @keyframes cs-reveal {
-    from { clip-path: inset(0 100% 0 0); }
-    to   { clip-path: inset(0 8% 0 0); }
-  }
-  @keyframes cs-tip-slide {
-    from { left: 0%; }
-    to   { left: 87%; }
-  }
-  @keyframes cs-tip-life {
-    0%   { opacity: 0; }
-    5%   { opacity: 1; }
-    68%  { opacity: 1; }
-    86%  { opacity: 0; }
-    100% { opacity: 0; }
-  }
   @keyframes cs-breathe {
     0%   { opacity: 1;    }
     50%  { opacity: 0.88; }
@@ -29,38 +14,13 @@ const NEON_CSS = `
   .cs-svg {
     display: block;
     width: 100%;
-    clip-path: inset(0 100% 0 0);
-  }
-  .cs-tip {
-    position: absolute;
-    top: 10%; bottom: 10%;
-    left: 0%;
-    width: 72px;
-    transform: translateX(-50%);
-    opacity: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center,
-      rgba(230,255,255,0.90) 0%,
-      rgba(52,224,224,0.68) 28%,
-      rgba(52,224,224,0.12) 70%,
-      transparent 100%);
   }
 
-  .cs-active .cs-svg {
-    animation: cs-reveal 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
-  }
-  .cs-active .cs-tip {
-    animation:
-      cs-tip-slide 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both,
-      cs-tip-life  2.4s ease                            0.7s forwards;
-  }
   .cs-active .cs-neon-group {
-    animation: cs-breathe 4s ease-in-out 3.5s infinite;
+    animation: cs-breathe 4s ease-in-out 0.6s infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cs-svg        { clip-path: inset(0 8% 0 0) !important; animation: none !important; }
-    .cs-tip        { display: none !important; }
     .cs-neon-group { animation: none !important; }
   }
 
@@ -68,6 +28,7 @@ const NEON_CSS = `
 
   @media (max-width: 640px) {
     .cs-neon-wrap { justify-content: flex-start !important; }
+    .cs-car-img   { object-position: center 28% !important; }
   }
 `
 
@@ -142,8 +103,6 @@ function NeonSignature({ active }: { active: boolean }) {
             </g>
           </svg>
 
-          {/* Moving glow tip — sibling to SVG, not clipped, leads the reveal */}
-          <div className="cs-tip" />
         </div>
       </div>
     </>
@@ -180,6 +139,7 @@ export function ChargerSection() {
         alt=""
         fill
         sizes="100vw"
+        className="cs-car-img"
         style={{ objectFit: 'cover', objectPosition: 'center 38%' }}
         priority={false}
       />
@@ -193,10 +153,10 @@ export function ChargerSection() {
         position: 'absolute', inset: 0,
         background: 'radial-gradient(ellipse 65% 32% at 28% 94%, rgba(52,224,224,0.08) 0%, transparent 70%)',
       }} />
-      {/* Thin top vignette so neon reads against bright sky */}
+      {/* Top vignette so neon reads against sky — stronger on mobile */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(to bottom, rgba(7,8,10,0.28) 0%, transparent 28%)',
+        background: 'linear-gradient(to bottom, rgba(7,8,10,0.55) 0%, rgba(7,8,10,0.18) 22%, transparent 40%)',
       }} />
     </div>
   )

@@ -27,11 +27,18 @@ function TechHero() {
       aria-hidden
       style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}
     >
+      <style>{`
+        @media (max-width: 640px) {
+          .tech-machine-img { object-position: right 15% !important; }
+          .tech-machine-mob { display: block !important; }
+        }
+      `}</style>
       <Image
         src="/machine.png"
         alt=""
         fill
         sizes="100vw"
+        className="tech-machine-img"
         style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
         priority
       />
@@ -46,10 +53,10 @@ function TechHero() {
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to top, rgba(7,8,10,0.82) 0%, transparent 38%)',
       }} />
-      {/* Mobile top overlay — text stacks above on small screens */}
+      {/* Top vignette — text stacks above charger on small screens */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(to bottom, rgba(7,8,10,0.72) 0%, transparent 30%)',
+        background: 'linear-gradient(to bottom, rgba(7,8,10,0.82) 0%, transparent 35%)',
       }} />
       {/* Cyan atmosphere at charger body (right-center of section) */}
       <div style={{
@@ -57,6 +64,15 @@ function TechHero() {
         background:
           'radial-gradient(ellipse 38% 62% at 70% 46%, rgba(52,224,224,0.08) 0%, transparent 70%)',
       }} />
+      {/* Mobile blanket overlay: left→right gradient fails when content fills full width */}
+      <div
+        className="tech-machine-mob"
+        style={{
+          display: 'none',
+          position: 'absolute', inset: 0,
+          background: 'rgba(7,8,10,0.52)',
+        }}
+      />
     </div>
   )
 
