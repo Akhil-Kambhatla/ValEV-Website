@@ -278,6 +278,7 @@ export function FirstStationMap() {
 
   return (
     <div
+      id="stations"
       ref={wrapRef}
       style={{
         paddingBlock:  'clamp(56px, 9vh, 100px)',
