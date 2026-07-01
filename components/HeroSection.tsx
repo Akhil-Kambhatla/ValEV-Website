@@ -160,8 +160,8 @@ export function HeroSection() {
               lineHeight: 1.06,
             }}
           >
-            Charge ahead.{' '}
-            <span style={{ color: 'var(--silver-mid)' }}>Go further.</span>
+            Charge Ahead.{' '}
+            <span style={{ color: 'var(--silver-mid)' }}>Go Further.</span>
           </h1>
 
           {/* Subline */}

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useReducedMotion } from 'framer-motion'
 
 // ── Timing ───────────────────────────────────────────────────────────────────
-const PASS_SEC   = 22      // seconds for one full traversal
+const PASS_SEC   = 20      // seconds for one full traversal
 const FIRST_MS   = 6_000   // delay before the very first pass
 const GAP_MIN_MS = 15_000  // minimum gap between passes
 const GAP_MAX_MS = 26_000  // maximum gap between passes

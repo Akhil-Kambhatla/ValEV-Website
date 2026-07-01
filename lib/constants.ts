@@ -1,3 +1,33 @@
+// ─── Charging stations ────────────────────────────────────────────────────────
+
+export interface Station {
+  name:      string  // short display name / station ID
+  venue:     string  // host venue name
+  city:      string
+  state:     string
+  status:    'coming-soon' | 'live' | 'planned'
+  machines:  number
+  latitude:  number
+  longitude: number
+}
+
+export const STATIONS: Station[] = [
+  {
+    name:      'Lucky9 Tadipatri Biryani Center',
+    venue:     'Lucky9 Tadipatri Biryani Center',
+    city:      'Ananthapur',
+    state:     'Andhra Pradesh',
+    status:    'coming-soon',
+    machines:  2,
+    latitude:  14.677964995449972,
+    longitude: 77.60121721534581,
+  },
+]
+
+export function stationMapsUrl(s: Station): string {
+  return `https://www.google.com/maps/search/?api=1&query=${s.latitude},${s.longitude}`
+}
+
 // ─── Brand ───────────────────────────────────────────────────────────────────
 export const BRAND = {
   name:    'ValEV',
