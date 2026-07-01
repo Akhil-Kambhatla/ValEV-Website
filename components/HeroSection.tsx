@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { Logo } from './Logo'
+import { EVSilhouette } from './EVSilhouette'
 import { LightTrails } from './LightTrails'
 import { ParticleWave } from './ParticleWave'
 import { useLogoPhase } from '@/contexts/LogoPhase'
@@ -98,6 +99,9 @@ export function HeroSection() {
 
       {/* Horizon light-trails — slow drifting streaks in the lower hero, z-3 */}
       <LightTrails active={showCopy} />
+
+      {/* EV silhouette — single car glides through the lower band every 15-25s, z-4 */}
+      <EVSilhouette active={showCopy} />
 
       {/* Text-protection veil — z-5 (above canvas z-2, below copy z-10 and logo z-20).
           A dark radial gradient that clears the headline/stats zone so particles
