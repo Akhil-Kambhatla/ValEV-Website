@@ -52,6 +52,7 @@ export const CONTACT = {
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
+  { label: 'About',      href: '/about'      },
   { label: 'Network',    href: '#network'    },
   { label: 'Technology', href: '#technology' },
   { label: 'Stations',   href: '#stations'   },

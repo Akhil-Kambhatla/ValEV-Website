@@ -22,7 +22,11 @@ const FACTS = [
   },
 ]
 
-export function AboutSection() {
+export function AboutSection({ standalone = false }: { standalone?: boolean }) {
+  const innerClass = standalone
+    ? 'max-w-5xl mx-auto px-6 pt-40 pb-24 md:pt-48 md:pb-32'
+    : 'max-w-5xl mx-auto px-6 py-24 md:py-32'
+
   return (
     <SectionWrapper
       bg="s3"
@@ -30,7 +34,7 @@ export function AboutSection() {
       ambientGlow="rgba(52,224,224,0.02)"
       ambientLayer={<IndiaMapBackdrop />}
     >
-      <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
+      <div className={innerClass}>
 
         {/* Header */}
         <div className="mb-8 md:mb-10">

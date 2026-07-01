@@ -71,17 +71,19 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0" role="list">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={href}>
-              <a
-                href={href}
-                style={{ fontFamily: 'var(--font-body)', color: 'var(--silver-mid)' }}
-                className="text-sm transition-colors duration-150 hover:text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:rounded-sm"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map(({ label, href }) => {
+            const cls = "text-sm transition-colors duration-150 hover:text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:rounded-sm"
+            const sty = { fontFamily: 'var(--font-body)', color: 'var(--silver-mid)' }
+            return (
+              <li key={href}>
+                {href.startsWith('/') ? (
+                  <Link href={href} className={cls} style={sty}>{label}</Link>
+                ) : (
+                  <a href={href} className={cls} style={sty}>{label}</a>
+                )}
+              </li>
+            )
+          })}
         </ul>
 
         {/* CTA + hamburger */}
@@ -141,23 +143,31 @@ export function Navbar() {
               borderBottom:         '1px solid rgba(52, 224, 224, 0.06)',
             }}
           >
-            {NAV_LINKS.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setMobileOpen(false)}
-                className="text-base py-3 border-b transition-colors duration-150 last:border-0 focus-visible:outline-2 focus-visible:rounded-sm"
-                style={{
-                  fontFamily:  'var(--font-body)',
-                  color:       'var(--silver-mid)',
-                  borderColor: 'rgba(52, 224, 224, 0.06)',
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--cyan)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--silver-mid)' }}
-              >
-                {label}
-              </a>
-            ))}
+            {NAV_LINKS.map(({ label, href }) => {
+              const cls = "text-base py-3 border-b transition-colors duration-150 last:border-0 focus-visible:outline-2 focus-visible:rounded-sm hover:text-[color:var(--cyan)]"
+              const sty = { fontFamily: 'var(--font-body)', color: 'var(--silver-mid)', borderColor: 'rgba(52, 224, 224, 0.06)' }
+              return href.startsWith('/') ? (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className={cls}
+                  style={sty}
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className={cls}
+                  style={sty}
+                >
+                  {label}
+                </a>
+              )
+            })}
 
             <a
               href="#contact"

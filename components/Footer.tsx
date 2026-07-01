@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Logo } from './Logo'
 import { BRAND, CONTACT, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants'
@@ -46,15 +47,17 @@ export function Footer() {
         {/* ── Navigate column ──────────────────────────────────────────── */}
         <div className="flex flex-col gap-3">
           <p className="type-eyebrow mb-3">Navigate</p>
-          {NAV_LINKS.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              className="footer-link text-sm transition-colors duration-150"
-            >
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map(({ label, href }) =>
+            href.startsWith('/') ? (
+              <Link key={href} href={href} className="footer-link text-sm transition-colors duration-150">
+                {label}
+              </Link>
+            ) : (
+              <a key={href} href={href} className="footer-link text-sm transition-colors duration-150">
+                {label}
+              </a>
+            )
+          )}
           <div className="flex gap-4 mt-2">
             {FOOTER_LINKS.map(({ label, href }) => (
               <a
