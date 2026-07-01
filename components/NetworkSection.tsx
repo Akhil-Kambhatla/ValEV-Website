@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { SectionWrapper } from './SectionWrapper'
+
+const FirstStationMap = dynamic(
+  () => import('./FirstStationMap').then(m => ({ default: m.FirstStationMap })),
+  { ssr: false }
+)
 
 const FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLScm5H_97IwkwXdGbEq1ijuqAHyy1AG1FsdJd1xOwz4j0j1Lwg/viewform?embedded=true'
@@ -24,9 +30,11 @@ function SurveyModal({
   const closeBtnRef = useRef<HTMLButtonElement>(null)
   const [mounted, setMounted] = useState(false)
   const [visible, setVisible] = useState(false)
+  const hasOpenedRef = useRef(false)
 
   useEffect(() => {
     if (open) {
+      hasOpenedRef.current = true
       setMounted(true)
       const id = requestAnimationFrame(() =>
         requestAnimationFrame(() => setVisible(true))
@@ -39,7 +47,7 @@ function SurveyModal({
       const timer = setTimeout(() => {
         setMounted(false)
         document.body.style.overflow = ''
-        triggerRef.current?.focus()
+        if (hasOpenedRef.current) triggerRef.current?.focus()
       }, delay)
       return () => {
         clearTimeout(timer)
@@ -177,28 +185,21 @@ export function NetworkSection() {
 
   return (
     <SectionWrapper bg="s5" id="network" ambientGlow="rgba(52,224,224,0.035)">
-      <div style={{
-        paddingBlock: 'clamp(72px, 11vh, 120px)',
-        paddingInline: 'clamp(20px, 5vw, 72px)',
-        maxWidth: '640px',
-        marginInline: 'auto',
-        textAlign: 'center',
-      }}>
-        <p style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 'var(--text-eyebrow)',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: 'var(--silver-lo)',
-          marginBottom: '1.75rem',
-        }}>
-          Your input
-        </p>
+      {/* First confirmed station map */}
+      <FirstStationMap />
 
+      {/* Survey CTA */}
+      <div style={{
+        paddingBottom: 'clamp(72px, 11vh, 120px)',
+        paddingInline:  'clamp(20px, 5vw, 72px)',
+        maxWidth:       '640px',
+        marginInline:   'auto',
+        textAlign:      'center',
+      }}>
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'var(--text-section-h)',
-          color: 'var(--silver-hi)',
+          fontSize:   'var(--text-section-h)',
+          color:      'var(--silver-hi)',
           lineHeight: 'var(--leading-snug)',
           fontWeight: 700,
           marginBottom: '1.125rem',
@@ -207,13 +208,13 @@ export function NetworkSection() {
         </h2>
 
         <p style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 'clamp(1rem, 1.7vw, 1.125rem)',
-          color: 'var(--silver-mid)',
-          lineHeight: 'var(--leading-normal)',
-          marginBottom: '2.25rem',
-          maxWidth: '48ch',
-          marginInline: 'auto',
+          fontFamily:    'var(--font-body)',
+          fontSize:      'clamp(1rem, 1.7vw, 1.125rem)',
+          color:         'var(--silver-mid)',
+          lineHeight:    'var(--leading-normal)',
+          marginBottom:  '2.25rem',
+          maxWidth:      '48ch',
+          marginInline:  'auto',
         }}>
           We&apos;re running a quick survey on EV charging in South India. Your input
           shapes where we build our next stations.
@@ -223,16 +224,16 @@ export function NetworkSection() {
           ref={btnRef}
           onClick={() => setOpen(true)}
           style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'var(--text-body)',
-            fontWeight: 500,
+            fontFamily:      'var(--font-body)',
+            fontSize:        'var(--text-body)',
+            fontWeight:      500,
             backgroundColor: 'var(--cyan)',
-            color: 'var(--bg-hero)',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '14px 32px',
-            cursor: 'pointer',
-            transition: 'box-shadow 200ms ease',
+            color:           'var(--bg-hero)',
+            border:          'none',
+            borderRadius:    '8px',
+            padding:         '14px 32px',
+            cursor:          'pointer',
+            transition:      'box-shadow 200ms ease',
           }}
           onMouseEnter={e => {
             (e.currentTarget as HTMLElement).style.boxShadow =

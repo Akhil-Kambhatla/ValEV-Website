@@ -142,11 +142,6 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: EASE }}
         >
-          {/* Eyebrow */}
-          <p className="type-eyebrow mb-7 tracking-[0.22em]">
-            South India&nbsp;&middot;&nbsp;EV fast-charging
-          </p>
-
           {/* Headline */}
           <h1
             className="font-bold tracking-tight mb-5"
@@ -171,9 +166,7 @@ export function HeroSection() {
               lineHeight: 'var(--leading-normal)',
             }}
           >
-            ValEV installs and operates super-fast EV charging stations at restaurants,
-            parking spaces, and offices across South India, so drivers can charge quickly
-            and carry on.
+            ValEV is building South India&rsquo;s super-fast EV charging network.
           </p>
 
           {/* 2×2 capability stats */}
@@ -221,30 +214,56 @@ export function HeroSection() {
             ))}
           </div>
 
-          {/* CTA */}
-          <a
-            href="#technology"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
-            style={{
-              fontFamily: 'var(--font-body)',
-              border:     '1px solid rgba(52,224,224,0.22)',
-              color:      'var(--silver-mid)',
-              fontSize:   'var(--text-body)',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.45)'
-              el.style.color       = 'var(--silver-hi)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.22)'
-              el.style.color       = 'var(--silver-mid)'
-            }}
-          >
-            Our technology
-            <ChevronRight size={15} aria-hidden />
-          </a>
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button
+              onClick={() => {
+                document.getElementById('partner')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+              style={{
+                fontFamily:      'var(--font-body)',
+                backgroundColor: 'var(--cyan)',
+                color:           'var(--bg-hero)',
+                fontSize:        'var(--text-body)',
+                border:          'none',
+                cursor:          'pointer',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  '0 0 28px rgba(52,224,224,0.32), 0 0 8px rgba(52,224,224,0.18)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = 'none'
+              }}
+            >
+              Partner with us
+            </button>
+
+            <a
+              href="/technology"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+              style={{
+                fontFamily: 'var(--font-body)',
+                border:     '1px solid rgba(52,224,224,0.22)',
+                color:      'var(--silver-mid)',
+                fontSize:   'var(--text-body)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(52,224,224,0.45)'
+                el.style.color       = 'var(--silver-hi)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(52,224,224,0.22)'
+                el.style.color       = 'var(--silver-mid)'
+              }}
+            >
+              Our technology
+              <ChevronRight size={15} aria-hidden />
+            </a>
+          </div>
         </motion.div>
       )}
 

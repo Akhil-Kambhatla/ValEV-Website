@@ -210,7 +210,7 @@ export function ChargerSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          paddingTop: 'clamp(56px, 9vh, 96px)',
+          paddingTop: 'clamp(24px, 4vh, 48px)',
           paddingBottom: 'clamp(48px, 8vh, 88px)',
           paddingInline: 'clamp(20px, 5vw, 72px)',
         }}
@@ -241,7 +241,7 @@ export function ChargerSection() {
               maxWidth: '44ch',
             }}
           >
-            Fast enough that the wait becomes the break. Built to hold up to Indian roads, weather, and grids.
+            Fast enough that the wait becomes the break.
           </p>
         </div>
       </div>

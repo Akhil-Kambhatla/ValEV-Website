@@ -63,9 +63,8 @@ export function PartnerSection() {
         className="relative max-w-5xl mx-auto px-6 w-full"
         style={{ zIndex: 10 }}
       >
-        {/* Eyebrow + main hook — centered */}
+        {/* Main hook — centered */}
         <div className="text-center mb-14 md:mb-16">
-          <p className="type-eyebrow mb-7 tracking-[0.22em]">Partner with us</p>
           <h2
             className="font-bold tracking-tight mx-auto"
             style={{

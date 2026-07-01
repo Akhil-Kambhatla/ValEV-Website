@@ -34,7 +34,6 @@ export function AboutSection() {
 
         {/* Header */}
         <div className="mb-8 md:mb-10">
-          <p className="type-eyebrow mb-6">About ValEV</p>
           <h2
             className="font-bold tracking-tight max-w-2xl"
             style={{
