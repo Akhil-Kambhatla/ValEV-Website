@@ -55,7 +55,7 @@ export const NAV_LINKS = [
   { label: 'About',      href: '/about'      },
   { label: 'Network',    href: '/#network'   },
   { label: 'Technology', href: '/technology'  },
-  { label: 'Stations',   href: '/#network'   },
+  { label: 'Savings',    href: '/savings'    },
   { label: 'Contact',    href: '/#contact'   },
 ] as const
 
@@ -120,6 +120,18 @@ export const EV_FACTS: { stat: string; label: string }[] = [
   { stat: '2M+',       label: 'two- and three-wheelers sold as EVs in FY24' },
   { stat: 'CCS2',      label: 'India\'s universal DC fast-charge connector standard' },
 ]
+
+// ─── EV Savings Calculator ────────────────────────────────────────────────────
+export const SAVINGS_CALC = {
+  defaultMonthlyKm:     1200,   // km/month — typical South Indian city commuter
+  defaultPetrolMileage: 14,     // km/litre — mid-size sedan baseline
+  defaultPetrolPrice:   103,    // ₹/litre — national average (mid-2024)
+  defaultEvEfficiency:  6.5,    // km/kWh — typical EV in mixed city + highway use
+  defaultChargingCost:  10,     // ₹/kWh — typical DC fast-charger tariff in India
+  co2PerLitrePetrol:    2.31,   // kg CO2e per litre of petrol (IPCC factor)
+  disclaimer:
+    'an estimate, not a guarantee — fuel prices and EV efficiency vary by vehicle and usage.',
+} as const
 
 // ─── Team placeholders ────────────────────────────────────────────────────────
 export const TEAM = [

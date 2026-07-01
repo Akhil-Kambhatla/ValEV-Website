@@ -3,6 +3,7 @@ import { PartnerSection }     from '@/components/PartnerSection'
 import { AboutTeaser }        from '@/components/AboutTeaser'
 import { ChargerSection }     from '@/components/ChargerSection'
 import { BusOperatorSection } from '@/components/BusOperatorSection'
+import { SavingsTeaser }      from '@/components/SavingsTeaser'
 import { NetworkSection }     from '@/components/NetworkSection'
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <AboutTeaser />
       <ChargerSection />
       <BusOperatorSection />
+      <SavingsTeaser />
       <NetworkSection />
     </main>
   )
