@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -12,6 +13,8 @@ export function Navbar() {
   const [scrolled,   setScrolled]   = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { phase } = useLogoPhase()
+  const pathname   = usePathname()
+  const router     = useRouter()
 
   // Frosted glass kicks in after 16px scroll
   useEffect(() => {
@@ -34,6 +37,21 @@ export function Navbar() {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
+
+  // For /#section links: smooth-scroll on homepage, router.push on other pages.
+  function handleAnchorClick(e: React.MouseEvent, href: string) {
+    if (!href.startsWith('/#')) return
+    e.preventDefault()
+    const id = href.slice(2)
+    if (pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      router.push(href)
+    }
+  }
+
+  const cls = "text-sm transition-colors duration-150 hover:text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:rounded-sm"
+  const sty = { fontFamily: 'var(--font-body)', color: 'var(--silver-mid)' }
 
   return (
     <header
@@ -71,26 +89,26 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0" role="list">
-          {NAV_LINKS.map(({ label, href }) => {
-            const cls = "text-sm transition-colors duration-150 hover:text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:rounded-sm"
-            const sty = { fontFamily: 'var(--font-body)', color: 'var(--silver-mid)' }
-            return (
-              <li key={href}>
-                {href.startsWith('/') ? (
-                  <Link href={href} className={cls} style={sty}>{label}</Link>
-                ) : (
-                  <a href={href} className={cls} style={sty}>{label}</a>
-                )}
-              </li>
-            )
-          })}
+          {NAV_LINKS.map(({ label, href }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                className={cls}
+                style={sty}
+                onClick={(e) => handleAnchorClick(e, href)}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* CTA + hamburger */}
         <div className="flex items-center gap-4">
-          {/* "Host a Station" CTA — cyan bg, dark text, amber glow on hover */}
-          <a
-            href="#contact"
+          {/* "Host a Station" CTA — routes to the Host model in the Partner section */}
+          <Link
+            href="/#partner"
+            onClick={(e) => handleAnchorClick(e, '/#partner')}
             className="hidden md:inline-flex items-center px-5 py-2.5 rounded-md text-sm font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4 focus-visible:rounded-md"
             style={{
               fontFamily:      'var(--font-body)',
@@ -105,7 +123,7 @@ export function Navbar() {
             }}
           >
             Host a Station
-          </a>
+          </Link>
 
           {/* Hamburger (mobile only) */}
           <button
@@ -143,35 +161,27 @@ export function Navbar() {
               borderBottom:         '1px solid rgba(52, 224, 224, 0.06)',
             }}
           >
-            {NAV_LINKS.map(({ label, href }) => {
-              const cls = "text-base py-3 border-b transition-colors duration-150 last:border-0 focus-visible:outline-2 focus-visible:rounded-sm hover:text-[color:var(--cyan)]"
-              const sty = { fontFamily: 'var(--font-body)', color: 'var(--silver-mid)', borderColor: 'rgba(52, 224, 224, 0.06)' }
-              return href.startsWith('/') ? (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setMobileOpen(false)}
-                  className={cls}
-                  style={sty}
-                >
-                  {label}
-                </Link>
-              ) : (
-                <a
-                  key={href}
-                  href={href}
-                  onClick={() => setMobileOpen(false)}
-                  className={cls}
-                  style={sty}
-                >
-                  {label}
-                </a>
-              )
-            })}
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                onClick={(e) => {
+                  setMobileOpen(false)
+                  handleAnchorClick(e, href)
+                }}
+                className="text-base py-3 border-b transition-colors duration-150 last:border-0 focus-visible:outline-2 focus-visible:rounded-sm hover:text-[color:var(--cyan)]"
+                style={{ fontFamily: 'var(--font-body)', color: 'var(--silver-mid)', borderColor: 'rgba(52, 224, 224, 0.06)' }}
+              >
+                {label}
+              </Link>
+            ))}
 
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
+            <Link
+              href="/#partner"
+              onClick={(e) => {
+                setMobileOpen(false)
+                handleAnchorClick(e, '/#partner')
+              }}
               className="mt-4 inline-flex items-center justify-center px-5 py-3 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
               style={{
                 fontFamily:      'var(--font-body)',
@@ -180,7 +190,7 @@ export function Navbar() {
               }}
             >
               Host a Station
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

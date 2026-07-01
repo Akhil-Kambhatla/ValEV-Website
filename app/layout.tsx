@@ -4,6 +4,7 @@ import "./globals.css";
 import { BRAND } from "@/lib/constants";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { HashScrollHandler } from "@/components/HashScrollHandler";
 import { LogoPhaseProvider } from "@/contexts/LogoPhase";
 
 // next/font variables use distinct names so @theme can reference them without
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <LogoPhaseProvider>
+          <HashScrollHandler />
           <Navbar />
           {children}
           <Footer />

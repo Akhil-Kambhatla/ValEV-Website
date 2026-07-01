@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Logo } from './Logo'
-import { BRAND, CONTACT, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants'
+import { BRAND, CONTACT, NAV_LINKS } from '@/lib/constants'
 
 // Server component — no event handlers; hover via CSS custom props.
 // Logo inside here is 'use client' but that's fine in a server component tree.
@@ -47,28 +47,11 @@ export function Footer() {
         {/* ── Navigate column ──────────────────────────────────────────── */}
         <div className="flex flex-col gap-3">
           <p className="type-eyebrow mb-3">Navigate</p>
-          {NAV_LINKS.map(({ label, href }) =>
-            href.startsWith('/') ? (
-              <Link key={href} href={href} className="footer-link text-sm transition-colors duration-150">
-                {label}
-              </Link>
-            ) : (
-              <a key={href} href={href} className="footer-link text-sm transition-colors duration-150">
-                {label}
-              </a>
-            )
-          )}
-          <div className="flex gap-4 mt-2">
-            {FOOTER_LINKS.map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="footer-link-lo text-xs transition-colors duration-150"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+          {NAV_LINKS.map(({ label, href }) => (
+            <Link key={label} href={href} className="footer-link text-sm transition-colors duration-150">
+              {label}
+            </Link>
+          ))}
         </div>
 
         {/* ── Contact column ───────────────────────────────────────────── */}

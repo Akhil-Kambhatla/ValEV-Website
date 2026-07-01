@@ -53,10 +53,10 @@ export const CONTACT = {
 // ─── Navigation ───────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: 'About',      href: '/about'      },
-  { label: 'Network',    href: '#network'    },
+  { label: 'Network',    href: '/#network'   },
   { label: 'Technology', href: '/technology'  },
-  { label: 'Stations',   href: '#stations'   },
-  { label: 'Contact',    href: '#contact'    },
+  { label: 'Stations',   href: '/#network'   },
+  { label: 'Contact',    href: '/#contact'   },
 ] as const
 
 // ─── Footer links ─────────────────────────────────────────────────────────────
