@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { Logo } from './Logo'
+import { LightTrails } from './LightTrails'
 import { ParticleWave } from './ParticleWave'
 import { useLogoPhase } from '@/contexts/LogoPhase'
 
@@ -15,7 +16,7 @@ type LiftTransform = { x: number; y: number; scale: number }
 
 // 2×2 capability stats — hardware specs, not live-network claims
 const STATS = [
-  { value: '240 kW',     label: 'Peak output'            },
+  { value: '60–240 kW',  label: 'Per charger'            },
   { value: 'Dual gun',   label: 'Two vehicles at once'   },
   { value: 'CCS2',       label: 'DC fast-charge standard'},
   { value: 'All-weather',label: 'Rated for India'        },
@@ -94,6 +95,9 @@ export function HeroSection() {
     >
       {/* Particle wave — lazy-inits after logo animation, fades in over 1.6s */}
       <ParticleWave active={showCopy} />
+
+      {/* Horizon light-trails — slow drifting streaks in the lower hero, z-3 */}
+      <LightTrails active={showCopy} />
 
       {/* Text-protection veil — z-5 (above canvas z-2, below copy z-10 and logo z-20).
           A dark radial gradient that clears the headline/stats zone so particles
