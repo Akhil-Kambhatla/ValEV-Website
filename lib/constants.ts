@@ -162,8 +162,8 @@ export const FOCO_CALC = {
   // kW rating → machine purchase price (₹), actual grid draw (kW, for transformer sizing), avg daily units dispensed (kWh)
   machines: [
     { kw: 120, priceRs: 1_050_000, consumptionKw: 130, dailyUnits: 500 },
-    { kw: 180, priceRs: 1_300_000, consumptionKw: 196, dailyUnits: 625 },
-    { kw: 240, priceRs: 1_400_000, consumptionKw: 270, dailyUnits: 750 },
+    { kw: 180, priceRs: 1_300_000, consumptionKw: 196, dailyUnits: 600 },
+    { kw: 240, priceRs: 1_400_000, consumptionKw: 270, dailyUnits: 700 },
   ],
   // Transformer ladder (ascending kVA). Sizing rule: pick the smallest where total_consumption < 0.90 × kVA.
   // Verified: 1×120 (130kW) → 150kVA; 120+180 (326kW) → 400kVA; 3×240 (810kW) → 1000kVA.
@@ -173,16 +173,17 @@ export const FOCO_CALC = {
     { kva: 400,  priceRs: 1_250_000 },
     { kva: 500,  priceRs: 1_350_000 },
     { kva: 630,  priceRs: 1_500_000 },
-    { kva: 750,  priceRs: 1_750_000 },
-    { kva: 1000, priceRs: 2_200_000 },
+    { kva: 750,  priceRs: 2_000_000 },
+    { kva: 1000, priceRs: 2_500_000 },
   ],
-  // Civil works (cables, HT/LT meters, cabling) by machine count: index 0 = 1 machine, 1 = 2, 2 = 3.
-  civilByCount: [800_000, 1_000_000, 1_200_000],
-  // First-year software cost, included in total setup cost
-  softwareFirstYear: 50_000,
+  // Civil works: ₹8L for 1 machine, +₹3L per additional machine. Index 0 = 1 machine, etc.
+  civilByCount: [800_000, 1_100_000, 1_400_000],
+  // Fixed costs always included in every setup
+  canopyRs:          600_000,  // canopy
+  discomRs:        1_000_000,  // DISCOM connection charges
+  softwareFirstYear:  50_000,  // first-year software
   // Net profit per kWh dispensed — fixed, NOT user-editable
   netProfitPerUnit: 12,
-  disclaimer: 'Indicative estimate. Prices are not fixed — contact us for a detailed, site-specific estimate.',
 } as const
 
 // ─── Fleet Savings Calculator — PLACEHOLDER figures ──────────────────────────

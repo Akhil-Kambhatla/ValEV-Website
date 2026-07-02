@@ -120,26 +120,32 @@ export function FocoCalculator() {
   const slots = ([slot1, slot2, slot3] as (SlotKw | null)[]).filter((s): s is SlotKw => s !== null)
   const machineCount = slots.length
 
-  const totalMachinePrice  = slots.reduce((sum, kw) => sum + machineByKw(kw).priceRs, 0)
-  const totalConsumption   = slots.reduce((sum, kw) => sum + machineByKw(kw).consumptionKw, 0)
-  const totalDailyUnits    = slots.reduce((sum, kw) => sum + machineByKw(kw).dailyUnits, 0)
+  const totalMachinePrice = slots.reduce((sum, kw) => sum + machineByKw(kw).priceRs, 0)
+  const totalConsumption  = slots.reduce((sum, kw) => sum + machineByKw(kw).consumptionKw, 0)
+
+  // Units rule: 1 machine = that machine's units; 2-3 machines = lowest daily units × count
+  const minDailyUnits   = Math.min(...slots.map(kw => machineByKw(kw).dailyUnits))
+  const totalDailyUnits = machineCount === 1
+    ? machineByKw(slots[0]).dailyUnits
+    : minDailyUnits * machineCount
 
   const transformer    = pickTransformer(totalConsumption)
-  const civil          = CIVIL[machineCount - 1] ?? 800_000
-  const software       = FOCO_CALC.softwareFirstYear
-
-  const totalSetup     = totalMachinePrice + transformer.priceRs + civil + software
+  const civil          = (CIVIL as number[])[machineCount - 1] ?? 800_000
+  const totalSetup     = totalMachinePrice + transformer.priceRs + civil
+                       + FOCO_CALC.canopyRs + FOCO_CALC.discomRs + FOCO_CALC.softwareFirstYear
   const annualEarnings = totalDailyUnits * 365 * FOCO_CALC.netProfitPerUnit
   const paybackYears   = totalSetup / annualEarnings
 
-  const configStr  = slots.map(kw => `1x${kw}`).join(' + ')
-  const waMessage  = encodeURIComponent(`Hi ValEV, I'm interested in the FOCO model with ${configStr} kW. Please share a detailed estimate.`)
-  const waUrl      = `${CONTACT.whatsappUrl}?text=${waMessage}`
+  const configStr = slots.map(kw => `1x${kw}`).join(' + ')
+  const waMessage = encodeURIComponent(`Hi ValEV, I'm interested in the FOCO model with ${configStr} kW. Please share a detailed estimate.`)
+  const waUrl     = `${CONTACT.whatsappUrl}?text=${waMessage}`
 
   const includedItems = [
     `Charging machine${machineCount > 1 ? 's' : ''} (${configStr} kW)`,
     `Transformer (${transformer.kva} kVA)`,
-    'Civil works (cables, HT/LT meters, cabling)',
+    'Civil works',
+    'Canopy',
+    'Discom charges',
     'Software (first year)',
   ]
 
@@ -223,13 +229,6 @@ export function FocoCalculator() {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Amber disclaimer */}
-      <div style={{ padding: '12px 16px', borderRadius: '8px', backgroundColor: 'rgba(200,160,60,0.05)', border: '1px solid rgba(200,160,60,0.14)', marginBottom: '1.75rem' }}>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', color: 'rgba(200,160,60,0.80)', lineHeight: 'var(--leading-relaxed)', margin: 0 }}>
-          {FOCO_CALC.disclaimer} Net profit assumed at &#8377;{FOCO_CALC.netProfitPerUnit}/kWh.
-        </p>
       </div>
 
       {/* WhatsApp CTA */}

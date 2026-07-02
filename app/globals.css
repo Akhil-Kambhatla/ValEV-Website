@@ -331,3 +331,33 @@ body {
 .leaflet-popup-tip {
   background: var(--card-s3);
 }
+
+/* ─── Transient cyan light animations ───────────────────────────────────────
+   Used by CyanLights.tsx. GPU-composited (transform + opacity only).
+   --s-dur / --s-delay: streak timing custom props set via inline style.
+   --o-dur / --o-delay: orb timing custom props set via inline style.     */
+@keyframes valev-streak {
+  0%   { transform: translateX(-110%) skewX(-5deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(210%) skewX(-5deg); opacity: 0; }
+}
+@keyframes valev-orb-drift {
+  0%   { transform: translate(0px,   0px);  }
+  28%  { transform: translate(20px, -13px); }
+  55%  { transform: translate(-6px,  18px); }
+  78%  { transform: translate(14px,   6px); }
+  100% { transform: translate(0px,   0px);  }
+}
+
+.valev-streak {
+  animation: valev-streak var(--s-dur, 10s) var(--s-delay, 0s) ease-in-out infinite;
+}
+.valev-orb {
+  animation: valev-orb-drift var(--o-dur, 18s) var(--o-delay, 0s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .valev-streak { animation: none; opacity: 0 !important; }
+  .valev-orb    { animation: none; }
+}

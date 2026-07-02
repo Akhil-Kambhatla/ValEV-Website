@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { FocoCalculator }  from './FocoCalculator'
+import { CyanLights }      from './CyanLights'
 import { CONTACT, PARTNER_PLACEHOLDERS as P } from '@/lib/constants'
 
 const waFoco =
@@ -88,16 +89,20 @@ function ProcessStrip() {
         paddingInline:   'clamp(20px, 5vw, 72px)',
         backgroundColor: 'var(--bg-s3)',
         position:        'relative',
+        overflow:        'hidden',
       }}
     >
+      <CyanLights />
       <div
         aria-hidden
         style={{
           height:     '1px',
           background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
+          position:   'relative',
+          zIndex:     1,
         }}
       />
-      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px' }}>
+      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px', position: 'relative', zIndex: 1 }}>
         <p
           className="text-center mb-3"
           style={{
@@ -249,12 +254,15 @@ export function PartnerFranchisePage() {
       </BackdropSection>
 
       {/* FOCO content */}
-      <div style={{ backgroundColor: 'var(--bg-s2)' }}>
+      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
+        <CyanLights />
         <section
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
+            position:        'relative',
+            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -353,8 +361,10 @@ export function PartnerFranchisePage() {
           paddingInline:   'clamp(20px, 5vw, 72px)',
           backgroundColor: 'var(--bg-s2)',
           position:        'relative',
+          overflow:        'hidden',
         }}
       >
+        <CyanLights flip />
         {/* Hairline separator */}
         <div
           aria-hidden
@@ -363,9 +373,10 @@ export function PartnerFranchisePage() {
             top:        0, left: 0, right: 0,
             height:     '1px',
             background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
+            zIndex:     1,
           }}
         />
-        <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+        <div style={{ maxWidth: '960px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
           <h2
             className="font-bold tracking-tight mb-2"
             style={{
