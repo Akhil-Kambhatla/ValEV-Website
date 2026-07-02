@@ -1,11 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
-import { CONTACT } from '@/lib/constants'
+import { CONTACT, FLEET_SAVINGS_CALC } from '@/lib/constants'
 
 const waFleet =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
+
+function formatRupees(n: number): string {
+  if (n >= 10_000_000) return `₹${parseFloat((n / 10_000_000).toFixed(2))} crore`
+  if (n >= 100_000)    return `₹${parseFloat((n / 100_000).toFixed(2))} lakh`
+  return '₹' + n.toLocaleString('en-IN')
+}
 
 function WaButton({ href, label = 'Talk to us on WhatsApp' }: { href: string; label?: string }) {
   return (
@@ -52,6 +59,247 @@ function CheckItem({ text }: { text: string }) {
         {text}
       </span>
     </li>
+  )
+}
+
+const pillBase: React.CSSProperties = {
+  fontFamily:      'var(--font-mono)',
+  fontSize:        '0.8rem',
+  padding:         '6px 16px',
+  borderRadius:    '6px',
+  border:          '1px solid rgba(52,224,224,0.18)',
+  cursor:          'pointer',
+  background:      'transparent',
+  color:           'var(--silver-mid)',
+}
+const pillActive: React.CSSProperties = {
+  background:   'rgba(52,224,224,0.12)',
+  border:       '1px solid rgba(52,224,224,0.4)',
+  color:        'var(--cyan)',
+}
+
+function FleetSavingsCalc() {
+  const {
+    savingsOptions, defaultSavings,
+    defaultVehicles, vehiclesMin, vehiclesMax,
+    defaultChargesPerWk, weeksPerMonth, weeksPerYear,
+    disclaimer,
+  } = FLEET_SAVINGS_CALC
+
+  const [savings,      setSavings]      = useState<number>(defaultSavings)
+  const [vehicles,     setVehicles]     = useState<number>(defaultVehicles)
+  const [chargesPerWk, setChargesPerWk] = useState<number>(defaultChargesPerWk)
+
+  const v       = Math.max(vehiclesMin, Math.min(vehiclesMax, vehicles || 0))
+  const monthly = Math.round(savings * v * chargesPerWk * weeksPerMonth)
+  const yearly  = Math.round(savings * v * chargesPerWk * weeksPerYear)
+
+  const waText = encodeURIComponent(
+    `Hi ValEV, I run a fleet of ${v} vehicles and would like to discuss preferential charging rates. My estimated yearly saving is approximately ${formatRupees(yearly)}.`
+  )
+  const waUrl = `${CONTACT.whatsappUrl}?text=${waText}`
+
+  const labelStyle: React.CSSProperties = {
+    fontFamily:    'var(--font-body)',
+    fontSize:      '0.8125rem',
+    color:         'var(--silver-lo)',
+    letterSpacing: '0.06em',
+    textTransform: 'uppercase',
+    display:       'block',
+    marginBottom:  '10px',
+  }
+
+  return (
+    <section
+      style={{
+        paddingBlock:  'clamp(56px, 8vh, 88px)',
+        paddingInline: 'clamp(20px, 5vw, 72px)',
+        background:    'var(--bg-hero)',
+        borderTop:     '1px solid rgba(52,224,224,0.08)',
+        borderBottom:  '1px solid rgba(52,224,224,0.08)',
+      }}
+    >
+      <div style={{ maxWidth: '720px', marginInline: 'auto' }}>
+        <p
+          className="uppercase tracking-widest mb-3"
+          style={{
+            fontFamily:    'var(--font-mono)',
+            fontSize:      '0.65rem',
+            letterSpacing: '0.2em',
+            color:         'var(--silver-lo)',
+          }}
+        >
+          Fleet savings calculator
+        </p>
+        <h2
+          className="font-bold tracking-tight mb-8"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize:   'var(--text-h2)',
+            color:      'var(--silver-hi)',
+            lineHeight: 'var(--leading-snug)',
+          }}
+        >
+          Estimate your savings
+        </h2>
+
+        <div className="flex flex-col gap-7">
+          {/* Savings per charge */}
+          <div>
+            <span style={labelStyle}>Savings per charge (vs standard rates)</span>
+            <div className="flex gap-2 flex-wrap">
+              {savingsOptions.map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => setSavings(opt)}
+                  style={savings === opt ? { ...pillBase, ...pillActive } : pillBase}
+                >
+                  ₹{opt.toLocaleString('en-IN')}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Number of vehicles */}
+          <div>
+            <label
+              htmlFor="fleet-vehicles"
+              style={{
+                ...labelStyle,
+                display:        'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span>Number of vehicles</span>
+              <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--cyan)' }}>{v}</span>
+            </label>
+            <input
+              id="fleet-vehicles"
+              type="range"
+              min={vehiclesMin}
+              max={vehiclesMax}
+              value={v}
+              onChange={e => setVehicles(Number(e.target.value))}
+              className="w-full"
+              style={{ accentColor: 'var(--cyan)' }}
+            />
+            <div
+              className="flex justify-between mt-1"
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize:   '0.65rem',
+                color:      'var(--silver-lo)',
+              }}
+            >
+              <span>{vehiclesMin}</span>
+              <span>{vehiclesMax}</span>
+            </div>
+          </div>
+
+          {/* Charges per week */}
+          <div>
+            <span style={labelStyle}>Charges per vehicle per week</span>
+            <div className="flex gap-2 flex-wrap">
+              {[1, 2, 3, 4, 5, 6, 7].map(n => (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => setChargesPerWk(n)}
+                  style={chargesPerWk === n ? { ...pillBase, ...pillActive } : pillBase}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Output */}
+        <div className="grid sm:grid-cols-2 gap-4 mt-8">
+          <div
+            className="p-5 rounded-xl"
+            style={{
+              background: 'rgba(7,8,10,0.60)',
+              border:     '1px solid rgba(52,224,224,0.10)',
+            }}
+          >
+            <p
+              style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '0.65rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color:         'var(--silver-lo)',
+                marginBottom:  '8px',
+              }}
+            >
+              Monthly savings
+            </p>
+            <p
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
+                fontWeight: 700,
+                color:      'var(--silver-hi)',
+                lineHeight: 1,
+              }}
+            >
+              {monthly > 0 ? formatRupees(monthly) : '—'}
+            </p>
+          </div>
+
+          <div
+            className="p-5 rounded-xl"
+            style={{
+              background: 'rgba(52,224,224,0.07)',
+              border:     '1px solid rgba(52,224,224,0.25)',
+            }}
+          >
+            <p
+              style={{
+                fontFamily:    'var(--font-mono)',
+                fontSize:      '0.65rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color:         'var(--cyan)',
+                opacity:       0.7,
+                marginBottom:  '8px',
+              }}
+            >
+              Yearly savings
+            </p>
+            <p
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
+                fontWeight: 700,
+                color:      'var(--cyan)',
+                lineHeight: 1,
+              }}
+            >
+              {yearly > 0 ? formatRupees(yearly) : '—'}
+            </p>
+          </div>
+        </div>
+
+        <p
+          className="mt-4"
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize:   '0.75rem',
+            color:      'var(--silver-lo)',
+            lineHeight: 'var(--leading-normal)',
+          }}
+        >
+          {disclaimer}
+        </p>
+
+        <div className="mt-6">
+          <WaButton href={waUrl} label="Talk to us on WhatsApp" />
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -174,7 +422,7 @@ function FleetProcessStrip() {
 export function PartnerFleetPage() {
   return (
     <>
-      {/* Hero — bus backdrop with dark diagonal overlay */}
+      {/* Hero */}
       <section
         className="relative overflow-hidden"
         style={{
@@ -182,7 +430,6 @@ export function PartnerFleetPage() {
           minHeight: 'clamp(420px, 60vh, 680px)',
         }}
       >
-        {/* Bus backdrop image */}
         <style>{`
           @media (max-width: 640px) {
             .fleet-bus-img { object-position: 65% 50% !important; }
@@ -205,8 +452,6 @@ export function PartnerFleetPage() {
             zIndex:         0,
           }}
         />
-
-        {/* Diagonal overlay — heavy on text side, fades to show bus */}
         <div
           aria-hidden
           style={{
@@ -217,7 +462,6 @@ export function PartnerFleetPage() {
               'linear-gradient(135deg, rgba(7,8,10,0.98) 0%, rgba(7,8,10,0.94) 30%, rgba(7,8,10,0.78) 55%, rgba(7,8,10,0.32) 80%, rgba(7,8,10,0.10) 100%)',
           }}
         />
-        {/* Left-edge vignette for text legibility */}
         <div
           aria-hidden
           style={{
@@ -229,7 +473,6 @@ export function PartnerFleetPage() {
           }}
         />
 
-        {/* Content */}
         <div
           className="relative max-w-3xl mx-auto px-6 w-full"
           style={{
@@ -285,7 +528,7 @@ export function PartnerFleetPage() {
         </div>
       </section>
 
-      {/* Fleet content */}
+      {/* Fleet value props */}
       <div style={{ backgroundColor: 'var(--bg-s2)' }}>
         <section
           style={{
@@ -296,7 +539,7 @@ export function PartnerFleetPage() {
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
             <div className="grid md:grid-cols-[1fr_340px] gap-10 items-start">
 
-              {/* Left — description + what ValEV provides */}
+              {/* Left */}
               <div className="flex flex-col gap-6">
                 <p
                   style={{
@@ -306,21 +549,10 @@ export function PartnerFleetPage() {
                     lineHeight: 'var(--leading-normal)',
                   }}
                 >
-                  Whether you run intercity buses or a cab and ride fleet, ValEV builds the charging infrastructure around your operation, not around a public tariff. We work with you to understand your routes, depot locations, and vehicle count, then design a charging setup and pricing structure that actually fits your numbers.
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize:   'var(--text-body)',
-                    color:      'var(--silver-mid)',
-                    lineHeight: 'var(--leading-normal)',
-                  }}
-                >
-                  Our smart load-sharing technology allows multiple vehicles to charge simultaneously at a single depot location without needing multiple grid connections, meaning you can charge a large fleet efficiently and cost-effectively from day one.
+                  We design charging around your routes, depot locations, and fleet size, not a public driver tariff.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {/* Who this is for */}
                   <div
                     className="p-5 rounded-xl"
                     style={{
@@ -348,7 +580,6 @@ export function PartnerFleetPage() {
                     </ul>
                   </div>
 
-                  {/* What ValEV provides */}
                   <div
                     className="p-5 rounded-xl"
                     style={{
@@ -383,9 +614,8 @@ export function PartnerFleetPage() {
                 </div>
               </div>
 
-              {/* Right — value props */}
+              {/* Right — value prop cards */}
               <div className="flex flex-col gap-4">
-                {/* Dedicated pricing */}
                 <div
                   className="p-6 rounded-xl"
                   style={{
@@ -418,7 +648,6 @@ export function PartnerFleetPage() {
                   </p>
                 </div>
 
-                {/* Strategic placement */}
                 <div
                   className="p-6 rounded-xl"
                   style={{
@@ -451,7 +680,6 @@ export function PartnerFleetPage() {
                   </p>
                 </div>
 
-                {/* Smart load-sharing */}
                 <div
                   className="p-6 rounded-xl"
                   style={{
@@ -488,6 +716,9 @@ export function PartnerFleetPage() {
           </div>
         </section>
       </div>
+
+      {/* Savings calculator */}
+      <FleetSavingsCalc />
 
       {/* How it works */}
       <FleetProcessStrip />

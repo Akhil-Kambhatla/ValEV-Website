@@ -202,6 +202,23 @@ export const FOCO_CALC = {
   disclaimer: 'Indicative estimate — prices are not fixed, contact us for a detailed estimate. Simple per-machine multiplication is used; actual shared-infrastructure costs vary by site.',
 } as const
 
+// ─── Fleet Savings Calculator — PLACEHOLDER figures ──────────────────────────
+// PLACEHOLDER — savingsOptions represent ₹ saved per charge vs standard public
+// tariff. Replace with real preferential-rate advantage figures before launch.
+// weeksPerMonth and weeksPerYear are fixed calculation constants, not estimates.
+export const FLEET_SAVINGS_CALC = {
+  savingsOptions:      [800, 900, 1000] as const, // ₹ per charge — PLACEHOLDER
+  defaultSavings:      900,                        // default selection — PLACEHOLDER
+  defaultVehicles:     20,
+  vehiclesMin:         1,
+  vehiclesMax:         200,
+  defaultChargesPerWk: 5,
+  weeksPerMonth:       4.33,
+  weeksPerYear:        52,
+  disclaimer:
+    'Indicative estimate — actual preferential rates are tailored to your fleet and discussed directly.',
+} as const
+
 // ─── Team placeholders ────────────────────────────────────────────────────────
 export const TEAM = [
   { name: '[Founder Name]',    role: 'Founder & CEO',    bio: 'Placeholder — add your bio here.' },
