@@ -77,6 +77,18 @@ export function SectionWrapper({
         }}
       />
 
+      {/* Base ambient — prevents flat-black void; a faint cyan bloom at bottom-center
+          so every section has subtle depth before any per-section glow is added. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 90% 50% at 50% 92%, rgba(52,224,224,0.025), transparent)',
+          zIndex: 0,
+        }}
+      />
+
       {/* Optional ambient radial glow.
           Anchored at 20% from top so it blooms into view as you scroll in.
           Pass warmer/brighter colors for lower sections (the charge builds). */}

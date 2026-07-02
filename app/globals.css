@@ -153,6 +153,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Anchor targets: offset by fixed navbar height (~64px) + breathing room */
+[id] {
+  scroll-margin-top: 72px;
+}
+
 body {
   background-color: var(--bg-hero);
   color:            var(--silver-hi);

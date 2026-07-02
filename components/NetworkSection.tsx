@@ -184,7 +184,7 @@ export function NetworkSection() {
   const close = useCallback(() => setOpen(false), [])
 
   return (
-    <SectionWrapper bg="s5" id="network" ambientGlow="rgba(52,224,224,0.035)">
+    <SectionWrapper bg="s5" id="network" className="min-h-screen" ambientGlow="rgba(52,224,224,0.06)">
       {/* First confirmed station map */}
       <FirstStationMap />
 

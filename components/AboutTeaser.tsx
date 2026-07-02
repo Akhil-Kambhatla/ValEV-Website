@@ -4,8 +4,8 @@ import { SectionWrapper } from './SectionWrapper'
 
 export function AboutTeaser() {
   return (
-    <SectionWrapper bg="s3" id="about" ambientGlow="rgba(52,224,224,0.02)">
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28 flex flex-col md:flex-row md:items-center gap-10 md:gap-20">
+    <SectionWrapper bg="s3" id="about" className="min-h-[80vh] flex flex-col justify-center" ambientGlow="rgba(52,224,224,0.07)">
+      <div className="max-w-5xl mx-auto px-6 py-16 md:py-20 flex flex-col md:flex-row md:items-center gap-10 md:gap-20">
 
         {/* Text */}
         <div className="flex-1">

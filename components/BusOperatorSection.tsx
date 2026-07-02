@@ -85,6 +85,7 @@ export function BusOperatorSection() {
     <SectionWrapper
       bg="s4"
       id="bus-operators"
+      className="min-h-[90vh] flex flex-col justify-center"
       ambientLayer={busImageLayer}
     >
       <div

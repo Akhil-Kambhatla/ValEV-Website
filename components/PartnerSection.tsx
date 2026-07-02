@@ -62,7 +62,7 @@ export function PartnerSection() {
       overlayStrength={0.72}
       id="partner"
       bg="var(--bg-s2)"
-      className="flex items-center py-24 md:py-36"
+      className="flex items-center min-h-[90vh] py-24 md:py-36"
     >
       {/* Top hairline */}
       <div

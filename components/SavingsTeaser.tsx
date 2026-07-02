@@ -7,7 +7,11 @@ export function SavingsTeaser() {
   return (
     <section
       style={{
-        paddingBlock: 'clamp(48px, 8vh, 80px)',
+        minHeight: '70vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingBlock: 'clamp(64px, 10vh, 100px)',
         paddingInline: 'clamp(20px, 5vw, 72px)',
         backgroundColor: 'var(--bg-s4)',
         position: 'relative',
@@ -23,6 +27,16 @@ export function SavingsTeaser() {
           background:
             'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.12) 40%, rgba(52,224,224,0.18) 50%, rgba(52,224,224,0.12) 60%, transparent 100%)',
           pointerEvents: 'none',
+        }}
+      />
+      {/* Ambient — subtle top-right and bottom-left glows for depth */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background:
+            'radial-gradient(ellipse 65% 45% at 85% 15%, rgba(52,224,224,0.04), transparent), ' +
+            'radial-gradient(ellipse 55% 40% at 15% 85%, rgba(52,224,224,0.03), transparent)',
         }}
       />
 

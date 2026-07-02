@@ -11,8 +11,15 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="relative pt-16 pb-10 px-6"
-      style={{ backgroundColor: 'var(--bg-contact)' }}
+      className="relative px-6"
+      style={{
+        backgroundColor: 'var(--bg-contact)',
+        minHeight: '80vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingBlock: 'clamp(64px, 10vh, 96px)',
+      }}
     >
       {/* Hairline top separator */}
       <div
@@ -24,8 +31,18 @@ export function Footer() {
             'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.12) 40%, rgba(52,224,224,0.18) 50%, rgba(52,224,224,0.12) 60%, transparent 100%)',
         }}
       />
+      {/* Ambient atmosphere — two offset glows so the footer doesn't read as a flat void */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 55% at 20% 35%, rgba(52,224,224,0.035), transparent), ' +
+            'radial-gradient(ellipse 50% 40% at 80% 75%, rgba(52,224,224,0.025), transparent)',
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
 
         {/* ── Brand column ─────────────────────────────────────────────── */}
         <div className="flex flex-col gap-4">
