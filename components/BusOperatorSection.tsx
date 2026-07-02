@@ -76,19 +76,6 @@ export function BusOperatorSection() {
         }}
       >
         <div style={{ maxWidth: '520px' }}>
-          <p
-            style={{
-              fontFamily:    'var(--font-mono)',
-              fontSize:      '0.65rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color:         'var(--cyan)',
-              marginBottom:  '1rem',
-            }}
-          >
-            Fleet operators
-          </p>
-
           <h2
             style={{
               fontFamily:   'var(--font-display)',

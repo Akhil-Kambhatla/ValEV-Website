@@ -103,18 +103,6 @@ function ProcessStrip() {
         }}
       />
       <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px', position: 'relative', zIndex: 1 }}>
-        <p
-          className="text-center mb-3"
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.65rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color:         'var(--silver-lo)',
-          }}
-        >
-          How it works
-        </p>
         <h2
           className="text-center mb-12 font-bold tracking-tight"
           style={{
@@ -202,13 +190,6 @@ export function PartnerFranchisePage() {
             <ChevronLeft size={14} aria-hidden />
             All partnership models
           </Link>
-
-          <p
-            className="uppercase tracking-widest mb-4"
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.675rem', color: 'var(--cyan)', letterSpacing: '0.12em' }}
-          >
-            Partnership · FOCO Franchise
-          </p>
 
           <h1
             className="font-bold tracking-tight mb-5"
@@ -320,22 +301,19 @@ export function PartnerFranchisePage() {
                 <p
                   className="mb-1"
                   style={{
-                    fontFamily:    'var(--font-mono)',
+                    fontFamily:    'var(--font-body)',
                     fontSize:      '0.65rem',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color:         'var(--silver-lo)',
                   }}
                 >
-                  Indicative details
+                  Setup requirements
                 </p>
                 <dl className="flex flex-col">
-                  <SpecRow label="Investment"      value={P.focoInvestmentFrom} />
                   <SpecRow label="Space needed"    value={P.focoSpaceNeeded} />
                   <SpecRow label="Power setup"     value={P.focoPowerSetup} />
                   <SpecRow label="Ideal locations" value={P.focoIdealLocations} />
-                  <SpecRow label="Payback period"  value={P.focoPaybackPeriod} />
-                  <SpecRow label="Annual return"   value={P.focoAnnualReturn} />
                 </dl>
                 <p
                   className="mt-4"

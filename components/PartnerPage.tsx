@@ -170,18 +170,6 @@ export function PartnerPage() {
             paddingBottom: 'clamp(64px, 10vh, 100px)',
           }}
         >
-          <p
-            className="uppercase tracking-widest mb-4"
-            style={{
-              fontFamily:    'var(--font-mono)',
-              fontSize:      '0.675rem',
-              color:         'var(--cyan)',
-              letterSpacing: '0.12em',
-            }}
-          >
-            Partnership
-          </p>
-
           <h1
             className="font-bold tracking-tight mb-5"
             style={{
@@ -215,9 +203,16 @@ export function PartnerPage() {
           backgroundColor: 'var(--bg-s2)',
           paddingBlock:    'clamp(64px, 10vh, 96px)',
           paddingInline:   'clamp(20px, 5vw, 72px)',
+          position:        'relative',
+          overflow:        'hidden',
         }}
       >
-        <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+        {/* Ambient depth */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 60% 40% at 15% 20%, rgba(52,224,224,0.025), transparent)' }} />
+        <div style={{ maxWidth: '960px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
           <div className="grid md:grid-cols-3 gap-6">
             {MODELS.map(m => (
               <ModelCard key={m.href} {...m} />

@@ -80,19 +80,6 @@ export function PartnerSection() {
         className="relative max-w-4xl mx-auto px-6 w-full text-center"
         style={{ zIndex: 10 }}
       >
-        {/* Eyebrow */}
-        <p
-          className="uppercase tracking-widest mb-5"
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.675rem',
-            color:         'var(--cyan)',
-            letterSpacing: '0.12em',
-          }}
-        >
-          Partnership
-        </p>
-
         <h2
           className="font-bold tracking-tight mb-5"
           style={{

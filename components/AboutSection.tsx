@@ -192,10 +192,8 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
       </SectionWrapper>
 
       {/* ── 2. Why EV, Why Now ─────────────────────────────────────────────── */}
-      <SectionWrapper bg="s4" id="why-ev" ambientGlow="rgba(52,224,224,0.025)">
+      <SectionWrapper bg="s4" id="why-ev" ambientGlow="rgba(52,224,224,0.045)">
         <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-
-          <p className="type-eyebrow mb-6">Why EV, Why Now</p>
 
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"
@@ -275,10 +273,8 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
       </SectionWrapper>
 
       {/* ── 3. Why South India ─────────────────────────────────────────────── */}
-      <SectionWrapper bg="s3" id="why-south-india" ambientGlow="rgba(52,224,224,0.02)">
+      <SectionWrapper bg="s3" id="why-south-india" ambientGlow="rgba(52,224,224,0.038)">
         <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-
-          <p className="type-eyebrow mb-6">Why South India</p>
 
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"
@@ -345,10 +341,8 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
       </SectionWrapper>
 
       {/* ── 4. What We're Building ─────────────────────────────────────────── */}
-      <SectionWrapper bg="s4" id="what-were-building" ambientGlow="rgba(52,224,224,0.03)">
+      <SectionWrapper bg="s4" id="what-were-building" ambientGlow="rgba(52,224,224,0.05)">
         <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-
-          <p className="type-eyebrow mb-6">What We&rsquo;re Building</p>
 
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"

@@ -117,20 +117,16 @@ function FleetSavingsCalc() {
         background:    'var(--bg-hero)',
         borderTop:     '1px solid rgba(52,224,224,0.08)',
         borderBottom:  '1px solid rgba(52,224,224,0.08)',
+        position:      'relative',
+        overflow:      'hidden',
       }}
     >
-      <div style={{ maxWidth: '720px', marginInline: 'auto' }}>
-        <p
-          className="uppercase tracking-widest mb-3"
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.65rem',
-            letterSpacing: '0.2em',
-            color:         'var(--silver-lo)',
-          }}
-        >
-          Fleet savings calculator
-        </p>
+      {/* Ambient depth */}
+      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+        background: 'radial-gradient(ellipse 75% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
+      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+        background: 'radial-gradient(ellipse 50% 35% at 10% 20%, rgba(52,224,224,0.022), transparent)' }} />
+      <div style={{ maxWidth: '720px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
         <h2
           className="font-bold tracking-tight mb-8"
           style={{
@@ -334,28 +330,24 @@ function FleetProcessStrip() {
         paddingInline:   'clamp(20px, 5vw, 72px)',
         backgroundColor: 'var(--bg-s3)',
         position:        'relative',
+        overflow:        'hidden',
       }}
     >
+      {/* Ambient depth */}
+      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+        background: 'radial-gradient(ellipse 80% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
+      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+        background: 'radial-gradient(ellipse 55% 40% at 85% 15%, rgba(52,224,224,0.018), transparent)' }} />
       <div
         aria-hidden
         style={{
           height:     '1px',
           background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
+          position:   'relative',
+          zIndex:     1,
         }}
       />
-      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px' }}>
-        <p
-          className="text-center mb-3"
-          style={{
-            fontFamily:    'var(--font-mono)',
-            fontSize:      '0.65rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color:         'var(--silver-lo)',
-          }}
-        >
-          How it works
-        </p>
+      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px', position: 'relative', zIndex: 1 }}>
         <h2
           className="text-center mb-12 font-bold tracking-tight"
           style={{
@@ -490,18 +482,6 @@ export function PartnerFleetPage() {
             All partnership models
           </Link>
 
-          <p
-            className="uppercase tracking-widest mb-4"
-            style={{
-              fontFamily:    'var(--font-mono)',
-              fontSize:      '0.675rem',
-              color:         'var(--cyan)',
-              letterSpacing: '0.12em',
-            }}
-          >
-            Partnership · Fleet Operators
-          </p>
-
           <h1
             className="font-bold tracking-tight mb-5"
             style={{
@@ -529,11 +509,18 @@ export function PartnerFleetPage() {
       </section>
 
       {/* Fleet value props */}
-      <div style={{ backgroundColor: 'var(--bg-s2)' }}>
+      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient depth */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.038), transparent)' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 40% 45% at 85% 12%, rgba(52,224,224,0.02), transparent)' }} />
         <section
           style={{
             paddingBlock:  'clamp(56px, 8vh, 96px)',
             paddingInline: 'clamp(20px, 5vw, 72px)',
+            position:      'relative',
+            zIndex:        1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>

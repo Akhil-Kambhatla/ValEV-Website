@@ -207,7 +207,7 @@ const CAPABILITIES = [
 
 function TechCapabilities() {
   return (
-    <SectionWrapper bg="s2" ambientGlow="rgba(52,224,224,0.025)">
+    <SectionWrapper bg="s2" ambientGlow="rgba(52,224,224,0.045)">
       <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
 
         {/* Section heading */}
@@ -445,7 +445,7 @@ function FleetDiagram() {
 
 function TechFleet() {
   return (
-    <SectionWrapper bg="s3" ambientGlow="rgba(52,224,224,0.03)">
+    <SectionWrapper bg="s3" ambientGlow="rgba(52,224,224,0.055)">
       <div className="max-w-7xl mx-auto px-6 py-24 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-16 lg:gap-24 items-center">
 
@@ -541,7 +541,7 @@ function TechFleet() {
 
 function TechClose() {
   return (
-    <SectionWrapper bg="s4" ambientGlow="rgba(52,224,224,0.035)">
+    <SectionWrapper bg="s4" ambientGlow="rgba(52,224,224,0.065)">
       <div
         className="max-w-3xl mx-auto px-6 py-24 md:py-32"
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}

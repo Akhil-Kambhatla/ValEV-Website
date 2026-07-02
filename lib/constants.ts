@@ -183,7 +183,7 @@ export const FOCO_CALC = {
   discomRs:        1_000_000,  // DISCOM connection charges
   softwareFirstYear:  50_000,  // first-year software
   // Net profit per kWh dispensed — fixed, NOT user-editable
-  netProfitPerUnit: 12,
+  netProfitPerUnit: 8,
 } as const
 
 // ─── Fleet Savings Calculator — PLACEHOLDER figures ──────────────────────────

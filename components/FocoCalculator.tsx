@@ -155,10 +155,6 @@ export function FocoCalculator() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: EASE }}
     >
-      <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--silver-lo)', marginBottom: '0.75rem' }}>
-        FOCO Setup Cost + Return Estimator
-      </p>
-
       {/* Three independent machine-slot dropdowns */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '0.75rem' }}>
         <SlotSelect label="Machine 1" value={slot1} onChange={v => v && setSlot1(v)} required />

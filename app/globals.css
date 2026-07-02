@@ -37,8 +37,8 @@
 
   /* ── Type scale ──────────────────────────────────────────────────────────
      Display (Chakra Petch): ONLY at 32px and above (h1–h3).
-     Body (Inter): all prose, nav links, labels below 32px.
-     Mono (JetBrains Mono): data, eyebrows, numeric stats, tags.
+     Body (Inter): all prose, nav links, labels, data, stats — everything else.
+     Two fonts max per page. Numbers use font-variant-numeric: tabular-nums.
      Eyebrow pattern: uppercase · letter-spacing 0.2em · silver-lo color.    */
   --text-hero:      clamp(2.75rem, 5.5vw, 4.5rem);   /* 44–72px  h1 on hero */
   --text-h1:        clamp(2rem,    4vw,   3.5rem);    /* 32–56px  page h1 */
@@ -86,19 +86,19 @@
   --color-cyan:  #34E0E0;
   --color-amber: #FFB23E;
 
-  /* Fonts */
+  /* Fonts — two typefaces only: Chakra Petch (display) + Inter (everything else) */
   --font-display: var(--font-chakra);
   --font-body:    var(--font-inter);
-  --font-mono:    var(--font-jetbrains);
+  --font-mono:    var(--font-inter);  /* remapped: JetBrains Mono removed; Inter with tabular-nums for data */
 }
 
 /* ── Semantic type utilities ─────────────────────────────────────────────────
    Use these classes to apply the recurring type patterns rather than
    repeating the same font/size/tracking/case/color combo site-wide.          */
 @layer utilities {
-  /* Eyebrow — the repeated "LABEL ABOVE HEADLINE" pattern */
+  /* Eyebrow — uppercase label (scroll cue, etc.) */
   .type-eyebrow {
-    font-family:     var(--font-mono);
+    font-family:     var(--font-body);
     font-size:       var(--text-eyebrow);
     letter-spacing:  0.2em;
     text-transform:  uppercase;
@@ -106,13 +106,14 @@
     line-height:     1.4;
   }
 
-  /* Data label — mono, slightly larger, used under stats */
+  /* Data label — Inter, slightly smaller, used under stats and in cards */
   .type-label {
-    font-family:    var(--font-mono);
-    font-size:      0.75rem;      /* 12px */
-    letter-spacing: 0.08em;
-    color:          var(--silver-mid);
-    line-height:    1.4;
+    font-family:         var(--font-body);
+    font-size:           0.75rem;      /* 12px */
+    letter-spacing:      0.08em;
+    color:               var(--silver-mid);
+    line-height:         1.4;
+    font-variant-numeric: tabular-nums;
   }
 
   /* Card border using the hairline cyan token */

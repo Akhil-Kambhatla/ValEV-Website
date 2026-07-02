@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { MessageCircle, CheckCircle2, ChevronLeft, Banknote, Zap, Layers } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
-import { CONTACT, PARTNER_PLACEHOLDERS as P } from '@/lib/constants'
+import { CONTACT } from '@/lib/constants'
 
 const waHost =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20run%20a%20business%2Flocation%20and%20want%20to%20host%20a%20charging%20station.`
@@ -39,31 +39,6 @@ function WaButton({ href, label = 'Talk to us on WhatsApp' }: { href: string; la
   )
 }
 
-function SpecRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div
-      className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 py-3"
-      style={{ borderBottom: '1px solid rgba(52,224,224,0.07)' }}
-    >
-      <dt
-        className="shrink-0"
-        style={{
-          fontFamily:    'var(--font-mono)',
-          fontSize:      '0.7rem',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          color:         'var(--silver-lo)',
-          minWidth:      '9rem',
-        }}
-      >
-        {label}
-      </dt>
-      <dd style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-body)', color: 'var(--silver-mid)', margin: 0 }}>
-        {value}
-      </dd>
-    </div>
-  )
-}
 
 function CheckItem({ text }: { text: string }) {
   return (
@@ -155,13 +130,6 @@ export function PartnerHostPage() {
             All partnership models
           </Link>
 
-          <p
-            className="uppercase tracking-widest mb-4"
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.675rem', color: 'var(--cyan)', letterSpacing: '0.12em' }}
-          >
-            Partnership · Location Partner
-          </p>
-
           <h1
             className="font-bold tracking-tight mb-5"
             style={{
@@ -189,28 +157,24 @@ export function PartnerHostPage() {
       </BackdropSection>
 
       {/* Earning Options */}
-      <div style={{ backgroundColor: 'var(--bg-hero)' }}>
+      <div style={{ backgroundColor: 'var(--bg-hero)', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient depth */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 80% 60% at 50% 90%, rgba(52,224,224,0.045), transparent)' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 50% 35% at 80% 15%, rgba(52,224,224,0.02), transparent)' }} />
         <section
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
+            position:        'relative',
+            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
             <div className="flex flex-col gap-10">
               <div>
-                <p
-                  className="uppercase tracking-widest mb-3"
-                  style={{
-                    fontFamily:    'var(--font-mono)',
-                    fontSize:      '0.65rem',
-                    letterSpacing: '0.12em',
-                    color:         'var(--cyan)',
-                  }}
-                >
-                  Earning Options
-                </p>
                 <h2
                   className="font-bold mb-4"
                   style={{
@@ -274,12 +238,19 @@ export function PartnerHostPage() {
       </div>
 
       {/* Host content */}
-      <div style={{ backgroundColor: 'var(--bg-s2)' }}>
+      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient depth */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 90% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          background: 'radial-gradient(ellipse 45% 45% at 90% 10%, rgba(52,224,224,0.02), transparent)' }} />
         <section
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
+            position:        'relative',
+            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -348,45 +319,8 @@ export function PartnerHostPage() {
                 </div>
               </div>
 
-              {/* Right — earnings + ideal hosts */}
+              {/* Right — ideal hosts */}
               <div className="flex flex-col gap-4">
-                <div
-                  className="p-6 rounded-xl"
-                  style={{
-                    background:     'rgba(7,8,10,0.60)',
-                    border:         '1px solid rgba(52,224,224,0.12)',
-                    backdropFilter: 'blur(6px)',
-                  }}
-                >
-                  <p
-                    className="mb-4"
-                    style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '0.65rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color:         'var(--silver-lo)',
-                    }}
-                  >
-                    How you earn
-                  </p>
-                  <dl className="flex flex-col">
-                    <SpecRow label="Earning rate"    value={P.hostEarningRate} />
-                    <SpecRow label="Monthly (illus)" value={P.hostMonthlyEarning} />
-                  </dl>
-                  <p
-                    className="mt-4"
-                    style={{
-                      fontFamily:    'var(--font-mono)',
-                      fontSize:      '0.65rem',
-                      letterSpacing: '0.08em',
-                      color:         'rgba(200,160,60,0.75)',
-                    }}
-                  >
-                    Indicative figures — subject to confirmation
-                  </p>
-                </div>
-
                 <div
                   className="p-6 rounded-xl"
                   style={{
