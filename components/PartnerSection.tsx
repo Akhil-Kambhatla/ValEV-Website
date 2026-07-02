@@ -123,12 +123,12 @@ export function PartnerSection() {
           <ModelPill
             label="Franchise (FOCO)"
             desc="Invest and own. We operate."
-            href="/partner#franchise"
+            href="/partner/franchise"
           />
           <ModelPill
             label="Host a Station"
             desc="Provide space. Zero cost to you."
-            href="/partner#host"
+            href="/partner/host"
           />
         </div>
 
