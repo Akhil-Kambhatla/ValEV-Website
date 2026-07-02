@@ -115,11 +115,11 @@ export function PartnerSection() {
             lineHeight: 'var(--leading-normal)',
           }}
         >
-          Two ways to join the ValEV network in South India.
+          Three models. All designed so you benefit from South India&rsquo;s EV growth without managing the complexity.
         </p>
 
         {/* Model pills */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10 max-w-lg mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10 max-w-2xl mx-auto">
           <ModelPill
             label="Franchise (FOCO)"
             desc="Invest and own. We operate."
@@ -129,6 +129,11 @@ export function PartnerSection() {
             label="Host a Station"
             desc="Provide space. Zero cost to you."
             href="/partner/host"
+          />
+          <ModelPill
+            label="Fleet operators"
+            desc="Dedicated pricing and strategic placement."
+            href="/partner/fleet"
           />
         </div>
 

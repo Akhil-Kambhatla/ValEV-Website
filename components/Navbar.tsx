@@ -12,6 +12,7 @@ import { useLogoPhase } from '@/contexts/LogoPhase'
 const PARTNER_SUB = [
   { label: 'Franchise (FOCO)', href: '/partner/franchise' },
   { label: 'Host a Station',   href: '/partner/host'      },
+  { label: 'Fleet operators',  href: '/partner/fleet'     },
 ] as const
 
 export function Navbar() {

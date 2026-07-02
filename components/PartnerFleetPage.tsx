@@ -1,0 +1,490 @@
+'use client'
+
+import Link from 'next/link'
+import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
+import { CONTACT } from '@/lib/constants'
+
+const waFleet =
+  `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
+
+function WaButton({ href, label = 'Talk to us on WhatsApp' }: { href: string; label?: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+      style={{
+        fontFamily:      'var(--font-body)',
+        backgroundColor: 'var(--cyan)',
+        color:           'var(--bg-hero)',
+        fontSize:        'var(--text-body)',
+      }}
+      onMouseEnter={e => {
+        ;(e.currentTarget as HTMLElement).style.boxShadow =
+          '0 0 28px rgba(52,224,224,0.28), 0 0 8px rgba(52,224,224,0.14)'
+      }}
+      onMouseLeave={e => {
+        ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
+      }}
+    >
+      <MessageCircle size={17} aria-hidden />
+      {label}
+    </a>
+  )
+}
+
+function CheckItem({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-2.5">
+      <CheckCircle2
+        size={16}
+        aria-hidden
+        style={{ color: 'var(--cyan)', flexShrink: 0, marginTop: '0.2rem' }}
+      />
+      <span
+        style={{
+          fontFamily: 'var(--font-body)',
+          fontSize:   'var(--text-body)',
+          color:      'var(--silver-mid)',
+        }}
+      >
+        {text}
+      </span>
+    </li>
+  )
+}
+
+const FLEET_STEPS = [
+  {
+    n:     '01',
+    title: 'Get in touch',
+    body:  'Tell us about your fleet: vehicle count, routes, and depot locations. We respond within one working day.',
+  },
+  {
+    n:     '02',
+    title: 'Route and depot analysis',
+    body:  'Our team maps your operations and identifies the optimal placement for charging infrastructure.',
+  },
+  {
+    n:     '03',
+    title: 'Pricing and agreement',
+    body:  'We agree on a dedicated rate structure and infrastructure plan tailored to your fleet size and usage.',
+  },
+  {
+    n:     '04',
+    title: 'Deployment',
+    body:  'ValEV installs, operates, and monitors the charging infrastructure — your fleet charges, we handle the rest.',
+  },
+]
+
+function FleetProcessStrip() {
+  return (
+    <section
+      style={{
+        paddingBlock:    'clamp(56px, 8vh, 88px)',
+        paddingInline:   'clamp(20px, 5vw, 72px)',
+        backgroundColor: 'var(--bg-s3)',
+        position:        'relative',
+      }}
+    >
+      <div
+        aria-hidden
+        style={{
+          height:     '1px',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
+        }}
+      />
+      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px' }}>
+        <p
+          className="text-center mb-3"
+          style={{
+            fontFamily:    'var(--font-mono)',
+            fontSize:      '0.65rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color:         'var(--silver-lo)',
+          }}
+        >
+          How it works
+        </p>
+        <h2
+          className="text-center mb-12 font-bold tracking-tight"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize:   'var(--text-h2)',
+            color:      'var(--silver-hi)',
+            lineHeight: 'var(--leading-snug)',
+          }}
+        >
+          From first conversation to first charge
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FLEET_STEPS.map(({ n, title, body }) => (
+            <div
+              key={n}
+              className="flex flex-col gap-3 p-6 rounded-xl"
+              style={{
+                background: 'rgba(7,8,10,0.50)',
+                border:     '1px solid rgba(52,224,224,0.09)',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '1.5rem',
+                  fontWeight:    700,
+                  color:         'var(--cyan)',
+                  opacity:       0.6,
+                  lineHeight:    1,
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {n}
+              </span>
+              <h3
+                className="font-semibold"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize:   '1rem',
+                  color:      'var(--silver-hi)',
+                  lineHeight: 'var(--leading-snug)',
+                }}
+              >
+                {title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize:   'var(--text-body-sm, 0.8125rem)',
+                  color:      'var(--silver-mid)',
+                  lineHeight: 'var(--leading-normal)',
+                }}
+              >
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function PartnerFleetPage() {
+  return (
+    <>
+      {/* Hero — bus backdrop with dark diagonal overlay */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          backgroundColor: 'var(--bg-hero)',
+          minHeight: 'clamp(420px, 60vh, 680px)',
+        }}
+      >
+        {/* Bus backdrop image */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/bus%20backdrop%20valev.png"
+          alt=""
+          aria-hidden
+          style={{
+            position:       'absolute',
+            inset:          0,
+            width:          '100%',
+            height:         '100%',
+            objectFit:      'cover',
+            objectPosition: 'right bottom',
+            opacity:        0.55,
+            zIndex:         0,
+          }}
+        />
+
+        {/* Diagonal overlay — heavy on text side, fades to show bus */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset:    0,
+            zIndex:   1,
+            background:
+              'linear-gradient(135deg, rgba(7,8,10,0.98) 0%, rgba(7,8,10,0.94) 30%, rgba(7,8,10,0.78) 55%, rgba(7,8,10,0.32) 80%, rgba(7,8,10,0.10) 100%)',
+          }}
+        />
+        {/* Left-edge vignette for text legibility */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset:    0,
+            zIndex:   1,
+            background:
+              'linear-gradient(to right, rgba(7,8,10,0.72) 0%, transparent 50%)',
+          }}
+        />
+
+        {/* Content */}
+        <div
+          className="relative max-w-3xl mx-auto px-6 w-full"
+          style={{
+            zIndex:        10,
+            paddingTop:    'clamp(96px, 14vh, 144px)',
+            paddingBottom: 'clamp(64px, 10vh, 100px)',
+          }}
+        >
+          <Link
+            href="/partner"
+            className="inline-flex items-center gap-1.5 mb-6 text-sm transition-colors duration-150 hover:text-[color:var(--silver-hi)] focus-visible:outline-2 focus-visible:rounded-sm"
+            style={{ fontFamily: 'var(--font-body)', color: 'var(--silver-lo)' }}
+          >
+            <ChevronLeft size={14} aria-hidden />
+            All partnership models
+          </Link>
+
+          <p
+            className="uppercase tracking-widest mb-4"
+            style={{
+              fontFamily:    'var(--font-mono)',
+              fontSize:      '0.675rem',
+              color:         'var(--cyan)',
+              letterSpacing: '0.12em',
+            }}
+          >
+            Partnership · Fleet Operators
+          </p>
+
+          <h1
+            className="font-bold tracking-tight mb-5"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize:   'var(--text-section-h)',
+              color:      'var(--silver-hi)',
+              lineHeight: 'var(--leading-snug)',
+            }}
+          >
+            Charging built<br />for your fleet.
+          </h1>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize:   'var(--text-body-lg)',
+              color:      'var(--silver-mid)',
+              lineHeight: 'var(--leading-normal)',
+              maxWidth:   '46ch',
+            }}
+          >
+            ValEV works directly with bus and cab fleet operators to provide dedicated, preferential charging infrastructure placed exactly where your operations need it.
+          </p>
+        </div>
+      </section>
+
+      {/* Fleet content */}
+      <div style={{ backgroundColor: 'var(--bg-s2)' }}>
+        <section
+          style={{
+            paddingBlock:  'clamp(56px, 8vh, 96px)',
+            paddingInline: 'clamp(20px, 5vw, 72px)',
+          }}
+        >
+          <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+            <div className="grid md:grid-cols-[1fr_340px] gap-10 items-start">
+
+              {/* Left — description + what ValEV provides */}
+              <div className="flex flex-col gap-6">
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize:   'var(--text-body)',
+                    color:      'var(--silver-mid)',
+                    lineHeight: 'var(--leading-normal)',
+                  }}
+                >
+                  Whether you run intercity buses or a cab and ride fleet, ValEV builds the charging infrastructure around your operation, not around a public tariff. We work with you to understand your routes, depot locations, and vehicle count, then design a charging setup and pricing structure that actually fits your numbers.
+                </p>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize:   'var(--text-body)',
+                    color:      'var(--silver-mid)',
+                    lineHeight: 'var(--leading-normal)',
+                  }}
+                >
+                  Our smart load-sharing technology allows multiple vehicles to charge simultaneously at a single depot location without needing multiple grid connections, meaning you can charge a large fleet efficiently and cost-effectively from day one.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {/* Who this is for */}
+                  <div
+                    className="p-5 rounded-xl"
+                    style={{
+                      background: 'rgba(7,8,10,0.50)',
+                      border:     '1px solid rgba(52,224,224,0.09)',
+                    }}
+                  >
+                    <p
+                      className="mb-3"
+                      style={{
+                        fontFamily:    'var(--font-mono)',
+                        fontSize:      '0.65rem',
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color:         'var(--silver-lo)',
+                      }}
+                    >
+                      Who this is for
+                    </p>
+                    <ul className="flex flex-col gap-2 list-none m-0 p-0">
+                      <CheckItem text="Intercity and intra-city bus operators" />
+                      <CheckItem text="Cab and ride-hailing fleet operators" />
+                      <CheckItem text="Logistics and commercial EV fleets" />
+                      <CheckItem text="State and private transport corporations" />
+                    </ul>
+                  </div>
+
+                  {/* What ValEV provides */}
+                  <div
+                    className="p-5 rounded-xl"
+                    style={{
+                      background: 'rgba(52,224,224,0.04)',
+                      border:     '1px solid rgba(52,224,224,0.09)',
+                    }}
+                  >
+                    <p
+                      className="mb-3"
+                      style={{
+                        fontFamily:    'var(--font-mono)',
+                        fontSize:      '0.65rem',
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color:         'var(--silver-lo)',
+                      }}
+                    >
+                      What ValEV provides
+                    </p>
+                    <ul className="flex flex-col gap-2 list-none m-0 p-0">
+                      <CheckItem text="Dedicated, preferential unit pricing" />
+                      <CheckItem text="Strategically placed infrastructure" />
+                      <CheckItem text="Smart load-sharing for depot charging" />
+                      <CheckItem text="Full installation and operations" />
+                      <CheckItem text="Single point of contact end to end" />
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <WaButton href={waFleet} label="Talk to us on WhatsApp" />
+                </div>
+              </div>
+
+              {/* Right — value props */}
+              <div className="flex flex-col gap-4">
+                {/* Dedicated pricing */}
+                <div
+                  className="p-6 rounded-xl"
+                  style={{
+                    background:     'rgba(7,8,10,0.60)',
+                    border:         '1px solid rgba(52,224,224,0.12)',
+                    backdropFilter: 'blur(6px)',
+                  }}
+                >
+                  <p
+                    className="mb-2"
+                    style={{
+                      fontFamily:    'var(--font-mono)',
+                      fontSize:      '0.65rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color:         'var(--silver-lo)',
+                    }}
+                  >
+                    Dedicated pricing
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize:   'var(--text-body)',
+                      color:      'var(--silver-mid)',
+                      lineHeight: 'var(--leading-normal)',
+                    }}
+                  >
+                    Preferential unit rates structured around your fleet volume and charging patterns, not a public driver tariff.
+                  </p>
+                </div>
+
+                {/* Strategic placement */}
+                <div
+                  className="p-6 rounded-xl"
+                  style={{
+                    background:     'rgba(7,8,10,0.60)',
+                    border:         '1px solid rgba(52,224,224,0.12)',
+                    backdropFilter: 'blur(6px)',
+                  }}
+                >
+                  <p
+                    className="mb-2"
+                    style={{
+                      fontFamily:    'var(--font-mono)',
+                      fontSize:      '0.65rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color:         'var(--silver-lo)',
+                    }}
+                  >
+                    Strategic placement
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize:   'var(--text-body)',
+                      color:      'var(--silver-mid)',
+                      lineHeight: 'var(--leading-normal)',
+                    }}
+                  >
+                    Stations sited at the exact depots, stops, and waypoints your routes already use. No detours.
+                  </p>
+                </div>
+
+                {/* Smart load-sharing */}
+                <div
+                  className="p-6 rounded-xl"
+                  style={{
+                    background:     'rgba(7,8,10,0.60)',
+                    border:         '1px solid rgba(52,224,224,0.12)',
+                    backdropFilter: 'blur(6px)',
+                  }}
+                >
+                  <p
+                    className="mb-2"
+                    style={{
+                      fontFamily:    'var(--font-mono)',
+                      fontSize:      '0.65rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color:         'var(--silver-lo)',
+                    }}
+                  >
+                    Smart load-sharing
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize:   'var(--text-body)',
+                      color:      'var(--silver-mid)',
+                      lineHeight: 'var(--leading-normal)',
+                    }}
+                  >
+                    Multiple vehicles charge simultaneously at one site without overloading the grid connection. Depot charging made practical.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* How it works */}
+      <FleetProcessStrip />
+    </>
+  )
+}

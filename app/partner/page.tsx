@@ -4,7 +4,7 @@ import { PartnerPage } from '@/components/PartnerPage'
 export const metadata: Metadata = {
   title: 'Partner with ValEV',
   description:
-    'Two ways to join the ValEV EV fast-charging network in South India: invest through the FOCO franchise model, or host a station at your business at zero cost.',
+    'Three ways to join the ValEV EV fast-charging network in South India: the FOCO franchise model, hosting a station at your business at zero cost, or a dedicated fleet charging partnership.',
 }
 
 export default function PartnerRoute() {

@@ -29,6 +29,18 @@ const MODELS = [
     href: '/partner/host',
     cta:  'Explore host model',
   },
+  {
+    eyebrow:    'Fleet Operators',
+    label:      'Fleet Partnership',
+    desc:       'Bus and cab fleet operators get dedicated, preferential charging infrastructure placed exactly where their routes and depots need it. Pricing tailored to your fleet volume, not a public driver rate.',
+    highlights: [
+      'Dedicated preferential pricing',
+      'Strategic depot and route placement',
+      'Smart load-sharing for multi-vehicle sites',
+    ],
+    href: '/partner/fleet',
+    cta:  'Explore fleet model',
+  },
 ] as const
 
 function ModelCard({
@@ -191,7 +203,7 @@ export function PartnerPage() {
               maxWidth:   '44ch',
             }}
           >
-            Two models. Both designed so you benefit from South India&rsquo;s EV growth
+            Three models. All designed so you benefit from South India&rsquo;s EV growth
             without managing the complexity of running a charging station.
           </p>
         </div>
@@ -206,7 +218,7 @@ export function PartnerPage() {
         }}
       >
         <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {MODELS.map(m => (
               <ModelCard key={m.href} {...m} />
             ))}
