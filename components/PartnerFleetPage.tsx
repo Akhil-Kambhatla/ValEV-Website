@@ -183,18 +183,24 @@ export function PartnerFleetPage() {
         }}
       >
         {/* Bus backdrop image */}
+        <style>{`
+          @media (max-width: 640px) {
+            .fleet-bus-img { object-position: 65% 50% !important; }
+          }
+        `}</style>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/bus%20backdrop%20valev.png"
           alt=""
           aria-hidden
+          className="fleet-bus-img"
           style={{
             position:       'absolute',
             inset:          0,
             width:          '100%',
             height:         '100%',
             objectFit:      'cover',
-            objectPosition: 'right bottom',
+            objectPosition: '65% 45%',
             opacity:        0.55,
             zIndex:         0,
           }}

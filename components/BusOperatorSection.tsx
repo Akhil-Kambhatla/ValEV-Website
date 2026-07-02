@@ -20,7 +20,7 @@ const busImageLayer = (
   >
     <style>{`
       @media (max-width: 640px) {
-        .bus-backdrop-img { object-position: center bottom !important; }
+        .bus-backdrop-img { object-position: 65% 50% !important; }
       }
     `}</style>
     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -34,7 +34,7 @@ const busImageLayer = (
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        objectPosition: 'right bottom',
+        objectPosition: '65% 45%',
         opacity: 0.72,
       }}
     />
