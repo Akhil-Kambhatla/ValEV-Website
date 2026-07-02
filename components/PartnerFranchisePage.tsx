@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
+import { FocoCalculator }  from './FocoCalculator'
 import { CONTACT, PARTNER_PLACEHOLDERS as P } from '@/lib/constants'
 
 const waFoco =
@@ -344,6 +345,53 @@ export function PartnerFranchisePage() {
           </div>
         </section>
       </div>
+
+      {/* FOCO Calculator */}
+      <section
+        style={{
+          paddingBlock:    'clamp(56px, 8vh, 96px)',
+          paddingInline:   'clamp(20px, 5vw, 72px)',
+          backgroundColor: 'var(--bg-s2)',
+          position:        'relative',
+        }}
+      >
+        {/* Hairline separator */}
+        <div
+          aria-hidden
+          style={{
+            position:   'absolute',
+            top:        0, left: 0, right: 0,
+            height:     '1px',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
+          }}
+        />
+        <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+          <h2
+            className="font-bold tracking-tight mb-2"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize:   'var(--text-h2)',
+              color:      'var(--silver-hi)',
+              lineHeight: 'var(--leading-snug)',
+            }}
+          >
+            Estimate your returns
+          </h2>
+          <p
+            style={{
+              fontFamily:   'var(--font-body)',
+              fontSize:     'var(--text-body)',
+              color:        'var(--silver-mid)',
+              lineHeight:   'var(--leading-normal)',
+              maxWidth:     '48ch',
+              marginBottom: 'clamp(2rem, 4vh, 3rem)',
+            }}
+          >
+            See indicative setup costs and annual earnings for your FOCO station. Numbers are illustrative — we will provide a detailed site-specific estimate after a brief call.
+          </p>
+          <FocoCalculator />
+        </div>
+      </section>
 
       {/* How it works */}
       <ProcessStrip />

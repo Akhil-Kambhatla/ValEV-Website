@@ -56,7 +56,6 @@ export const NAV_LINKS = [
   { label: 'Network',    href: '/#network'   },
   { label: 'Technology', href: '/technology'  },
   { label: 'Partner',    href: '/partner'    },
-  { label: 'Earnings',   href: '/earnings'   },
   { label: 'Contact',    href: '/#contact'   },
 ] as const
 
@@ -155,6 +154,52 @@ export const PARTNER_PLACEHOLDERS = {
   // Host / Location Partner model
   hostEarningRate:     '₹X per kWh charged (indicative)',
   hostMonthlyEarning:  '₹X,XXX–₹XX,XXX per month (illustrative)',
+} as const
+
+// ─── FOCO Calculator — PLACEHOLDER figures ───────────────────────────────────
+// PLACEHOLDER — replace all cost and unit figures with real numbers before launch.
+export const FOCO_CALC = {
+  machineTypes: [
+    {
+      kw:  120,
+      label: '120 kW',
+      costs: {
+        machine:     1800000,  // PLACEHOLDER — machine purchase cost (₹)
+        transformer:  300000,  // PLACEHOLDER — transformer / power infrastructure (₹)
+        civil:        200000,  // PLACEHOLDER — civil works (₹)
+        software:      50000,  // PLACEHOLDER — software & commissioning (₹)
+        other:        150000,  // PLACEHOLDER — contingency / other (₹)
+      },
+      avgUnitsPerDay: 180,     // PLACEHOLDER — avg kWh dispensed per machine per day
+    },
+    {
+      kw:  180,
+      label: '180 kW',
+      costs: {
+        machine:     2700000,  // PLACEHOLDER
+        transformer:  400000,  // PLACEHOLDER
+        civil:        250000,  // PLACEHOLDER
+        software:      50000,  // PLACEHOLDER
+        other:        200000,  // PLACEHOLDER
+      },
+      avgUnitsPerDay: 280,     // PLACEHOLDER
+    },
+    {
+      kw:  240,
+      label: '240 kW',
+      costs: {
+        machine:     3700000,  // PLACEHOLDER
+        transformer:  500000,  // PLACEHOLDER
+        civil:        300000,  // PLACEHOLDER
+        software:      50000,  // PLACEHOLDER
+        other:        250000,  // PLACEHOLDER
+      },
+      avgUnitsPerDay: 380,     // PLACEHOLDER
+    },
+  ],
+  // Net profit per kWh — fixed assumption, NOT user-editable. PLACEHOLDER.
+  netProfitPerUnit: 8,
+  disclaimer: 'Indicative estimate — prices are not fixed, contact us for a detailed estimate. Simple per-machine multiplication is used; actual shared-infrastructure costs vary by site.',
 } as const
 
 // ─── Team placeholders ────────────────────────────────────────────────────────
