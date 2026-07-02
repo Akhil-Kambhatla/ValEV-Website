@@ -29,7 +29,6 @@ export function SavingsTeaser() {
           pointerEvents: 'none',
         }}
       />
-      {/* Ambient — subtle top-right and bottom-left glows for depth */}
       <div
         aria-hidden
         style={{
@@ -49,7 +48,7 @@ export function SavingsTeaser() {
           color: 'var(--silver-lo)',
           marginBottom: '1rem',
         }}>
-          For drivers
+          For location owners
         </p>
 
         <h2 style={{
@@ -60,7 +59,7 @@ export function SavingsTeaser() {
           lineHeight: 'var(--leading-snug)',
           marginBottom: '1rem',
         }}>
-          Curious what you&apos;d save?
+          Curious what your space could earn?
         </h2>
 
         <p style={{
@@ -72,11 +71,11 @@ export function SavingsTeaser() {
           maxWidth: '44ch',
           marginInline: 'auto',
         }}>
-          EV charging at ValEV typically costs a fraction of petrol. See the numbers for your own driving habits.
+          Hosting a ValEV station costs you nothing. You earn a payout on every unit charged at your location. See the numbers for your site.
         </p>
 
         <Link
-          href="/savings"
+          href="/earnings"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -98,7 +97,7 @@ export function SavingsTeaser() {
             (e.currentTarget as HTMLElement).style.boxShadow = 'none'
           }}
         >
-          Calculate your savings
+          Calculate your earnings
           <ChevronRight size={16} aria-hidden />
         </Link>
       </div>

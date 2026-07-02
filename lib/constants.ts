@@ -56,7 +56,7 @@ export const NAV_LINKS = [
   { label: 'Network',    href: '/#network'   },
   { label: 'Technology', href: '/technology'  },
   { label: 'Partner',    href: '/partner'    },
-  { label: 'Savings',    href: '/savings'    },
+  { label: 'Earnings',   href: '/earnings'   },
   { label: 'Contact',    href: '/#contact'   },
 ] as const
 
@@ -121,6 +121,14 @@ export const EV_FACTS: { stat: string; label: string }[] = [
   { stat: '2M+',       label: 'two- and three-wheelers sold as EVs in FY24' },
   { stat: 'CCS2',      label: 'India\'s universal DC fast-charge connector standard' },
 ]
+
+// ─── Host Earnings Calculator ─────────────────────────────────────────────────
+export const HOST_EARNINGS_CALC = {
+  defaultCarsPerDay:    18,    // EV cars per day — typical city commercial location
+  defaultUnitsPerCar:   30,    // kWh per session — typical DC fast-charge fill
+  defaultPayoutPerUnit: 1.75,  // ₹ per kWh — illustrative host payout rate
+  disclaimer: 'an estimate, not a guarantee — actual earnings depend on traffic, session length, and agreed payout rates.',
+} as const
 
 // ─── EV Savings Calculator ────────────────────────────────────────────────────
 export const SAVINGS_CALC = {
