@@ -156,50 +156,33 @@ export const PARTNER_PLACEHOLDERS = {
   hostMonthlyEarning:  '₹X,XXX–₹XX,XXX per month (illustrative)',
 } as const
 
-// ─── FOCO Calculator — PLACEHOLDER figures ───────────────────────────────────
-// PLACEHOLDER — replace all cost and unit figures with real numbers before launch.
+// ─── FOCO Calculator ─────────────────────────────────────────────────────────
+// PLACEHOLDER-ADJUSTABLE FIGURES — review all values before launch.
 export const FOCO_CALC = {
-  machineTypes: [
-    {
-      kw:  120,
-      label: '120 kW',
-      costs: {
-        machine:     1800000,  // PLACEHOLDER — machine purchase cost (₹)
-        transformer:  300000,  // PLACEHOLDER — transformer / power infrastructure (₹)
-        civil:        200000,  // PLACEHOLDER — civil works (₹)
-        software:      50000,  // PLACEHOLDER — software & commissioning (₹)
-        other:        150000,  // PLACEHOLDER — contingency / other (₹)
-      },
-      avgUnitsPerDay: 180,     // PLACEHOLDER — avg kWh dispensed per machine per day
-    },
-    {
-      kw:  180,
-      label: '180 kW',
-      costs: {
-        machine:     2700000,  // PLACEHOLDER
-        transformer:  400000,  // PLACEHOLDER
-        civil:        250000,  // PLACEHOLDER
-        software:      50000,  // PLACEHOLDER
-        other:        200000,  // PLACEHOLDER
-      },
-      avgUnitsPerDay: 280,     // PLACEHOLDER
-    },
-    {
-      kw:  240,
-      label: '240 kW',
-      costs: {
-        machine:     3700000,  // PLACEHOLDER
-        transformer:  500000,  // PLACEHOLDER
-        civil:        300000,  // PLACEHOLDER
-        software:      50000,  // PLACEHOLDER
-        other:        250000,  // PLACEHOLDER
-      },
-      avgUnitsPerDay: 380,     // PLACEHOLDER
-    },
+  // kW rating → machine purchase price (₹), actual grid draw (kW, for transformer sizing), avg daily units dispensed (kWh)
+  machines: [
+    { kw: 120, priceRs: 1_050_000, consumptionKw: 130, dailyUnits: 500 },
+    { kw: 180, priceRs: 1_300_000, consumptionKw: 196, dailyUnits: 625 },
+    { kw: 240, priceRs: 1_400_000, consumptionKw: 270, dailyUnits: 750 },
   ],
-  // Net profit per kWh — fixed assumption, NOT user-editable. PLACEHOLDER.
-  netProfitPerUnit: 8,
-  disclaimer: 'Indicative estimate — prices are not fixed, contact us for a detailed estimate. Simple per-machine multiplication is used; actual shared-infrastructure costs vary by site.',
+  // Transformer ladder (ascending kVA). Sizing rule: pick the smallest where total_consumption < 0.90 × kVA.
+  // Verified: 1×120 (130kW) → 150kVA; 120+180 (326kW) → 400kVA; 3×240 (810kW) → 1000kVA.
+  transformers: [
+    { kva: 150,  priceRs:   700_000 },
+    { kva: 315,  priceRs:   950_000 },
+    { kva: 400,  priceRs: 1_250_000 },
+    { kva: 500,  priceRs: 1_350_000 },
+    { kva: 630,  priceRs: 1_500_000 },
+    { kva: 750,  priceRs: 1_750_000 },
+    { kva: 1000, priceRs: 2_200_000 },
+  ],
+  // Civil works (cables, HT/LT meters, cabling) by machine count: index 0 = 1 machine, 1 = 2, 2 = 3.
+  civilByCount: [800_000, 1_000_000, 1_200_000],
+  // First-year software cost, included in total setup cost
+  softwareFirstYear: 50_000,
+  // Net profit per kWh dispensed — fixed, NOT user-editable
+  netProfitPerUnit: 12,
+  disclaimer: 'Indicative estimate. Prices are not fixed — contact us for a detailed, site-specific estimate.',
 } as const
 
 // ─── Fleet Savings Calculator — PLACEHOLDER figures ──────────────────────────
