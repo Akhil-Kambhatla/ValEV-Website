@@ -47,7 +47,7 @@ export const CONTACT = {
   whatsappSecondaryUrl: 'https://wa.me/919133377007',
   email:    'valevenergy@gmail.com',
   emailUrl: 'mailto:valevenergy@gmail.com',
-  instagram: 'https://instagram.com/valev.in',
+  linkedin: 'https://www.linkedin.com/company/val-ev/',
 }
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ export const NAV_LINKS = [
   { label: 'Network',    href: '/#network'   },
   { label: 'Technology', href: '/technology'  },
   { label: 'Partner',    href: '/partner'    },
-  { label: 'Contact',    href: '/#contact'   },
+  { label: 'Contact',    href: '/contact'    },
 ] as const
 
 // ─── Footer links ─────────────────────────────────────────────────────────────
