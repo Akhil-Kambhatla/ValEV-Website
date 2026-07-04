@@ -1,3 +1,6 @@
+// ─── Site ─────────────────────────────────────────────────────────────────────
+export const SITE_URL = 'https://valev.in'
+
 // ─── Charging stations ────────────────────────────────────────────────────────
 
 export interface Station {
