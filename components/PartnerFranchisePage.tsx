@@ -76,7 +76,7 @@ function CheckItem({ text }: { text: string }) {
 
 const STEPS = [
   { n: '01', title: 'Get in touch',           body: 'Drop us a message on WhatsApp or email. We will respond within one working day.' },
-  { n: '02', title: 'Site assessment',         body: 'Our team evaluates the location — space, power availability, and traffic profile.' },
+  { n: '02', title: 'Site assessment',         body: 'Our team evaluates the location: space, power availability, and traffic profile.' },
   { n: '03', title: 'Installation',            body: 'ValEV handles permitting, equipment supply, and installation end to end.' },
   { n: '04', title: 'Operations and earnings', body: 'We operate the station 24/7. You earn from every charging session.' },
 ]
@@ -277,9 +277,9 @@ export function PartnerFranchisePage() {
                   <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
                     <CheckItem text="Equipment supply and installation" />
                     <CheckItem text="Technology platform and remote monitoring software" />
-                    <CheckItem text="24/7 network operations and uptime management" />
+                    <CheckItem text="Operations and uptime management" />
                     <CheckItem text="All maintenance, servicing, and repairs" />
-                    <CheckItem text="Customer support for drivers" />
+                    <CheckItem text="Driver support" />
                     <CheckItem text="Ongoing site support" />
                   </ul>
                 </div>
@@ -324,7 +324,7 @@ export function PartnerFranchisePage() {
                     color:         'rgba(200,160,60,0.75)',
                   }}
                 >
-                  Indicative figures — subject to confirmation
+                  Indicative figures, subject to confirmation
                 </p>
               </div>
             </div>
@@ -376,7 +376,7 @@ export function PartnerFranchisePage() {
               marginBottom: 'clamp(2rem, 4vh, 3rem)',
             }}
           >
-            See indicative setup costs and annual earnings for your FOCO station. Numbers are illustrative — we will provide a detailed site-specific estimate after a brief call.
+            See indicative setup costs and annual earnings for your FOCO station. Numbers are illustrative. We will provide a detailed site-specific estimate after a brief call.
           </p>
           <FocoCalculator />
         </div>

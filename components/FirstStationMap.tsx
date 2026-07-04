@@ -342,7 +342,7 @@ export function FirstStationMap() {
             paddingInline: '2px',
             margin:        0,
           }}>
-            Our stations — {STATIONS.length} {STATIONS.length === 1 ? 'site' : 'sites'}
+            Our stations: {STATIONS.length} {STATIONS.length === 1 ? 'site' : 'sites'}
           </p>
 
           {/* Scrollable cards list */}
@@ -375,7 +375,7 @@ export function FirstStationMap() {
             marginTop:     'auto',
             paddingTop:    '12px',
           }}>
-            More stations coming to Andhra Pradesh and Telangana. Tap a marker to open in
+            Expanding across Andhra Pradesh and Telangana. Tap a marker to open in
             Google Maps.
           </p>
         </div>

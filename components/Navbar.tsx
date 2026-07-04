@@ -114,7 +114,7 @@ export function Navbar() {
               <Logo variant="nav" animated={false} />
             </div>
           ) : (
-            <Link href="/" aria-label={`${BRAND.name} — back to home`}>
+            <Link href="/" aria-label={`${BRAND.name}: back to home`}>
               <Logo variant="nav" animated={false} />
             </Link>
           )}

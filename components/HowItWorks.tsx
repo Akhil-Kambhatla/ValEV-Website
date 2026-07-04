@@ -8,7 +8,7 @@ const STEPS = [
   {
     n: '01',
     title: 'You sign up',
-    body: 'Tell us your location and parking capacity — takes a few minutes.',
+    body: 'Tell us your location and parking capacity. Takes a few minutes.',
   },
   {
     n: '02',

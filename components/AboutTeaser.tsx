@@ -29,8 +29,8 @@ export function AboutTeaser() {
               lineHeight: 'var(--leading-normal)',
             }}
           >
-            We install and operate CCS2 fast-charging stations at commercial venues across
-            Telangana and Andhra Pradesh &mdash; zero cost to hosts, reliable charging for drivers.
+            We are building a CCS2 fast-charging network at commercial venues across
+            Telangana and Andhra Pradesh. Zero cost to hosts, reliable charging for drivers.
           </p>
         </div>
 

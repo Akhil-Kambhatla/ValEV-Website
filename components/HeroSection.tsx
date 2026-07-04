@@ -175,7 +175,8 @@ export function HeroSection() {
               lineHeight: 'var(--leading-normal)',
             }}
           >
-            ValEV is building South India&rsquo;s super-fast EV charging network.
+            Charge at the pace that suits you. Grab a quick top-up, or settle in for a meal
+            at a nearby venue while your vehicle charges. Either way, the wait works for you.
           </p>
 
           {/* 2×2 capability stats */}

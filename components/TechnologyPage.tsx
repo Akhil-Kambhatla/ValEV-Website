@@ -120,9 +120,9 @@ function TechHero() {
               maxWidth:     '50ch',
               marginBottom: '2.5rem',
             }}>
-              ValEV deploys premium modular DC fast-charging hardware engineered
-              for Indian roads, weather, and scale. Every station is built to
-              charge dependably, session after session.
+              Premium modular DC fast-charging hardware, engineered for Indian
+              roads, weather, and scale. Each station is designed to charge
+              dependably, session after session.
             </p>
 
             {/* Spec chips */}
@@ -201,7 +201,7 @@ const CAPABILITIES = [
     stat:      'OTA',
     statLabel: 'software updates',
     title:     'Smart charging software',
-    body:      'Remote monitoring and real-time status from day one. Drivers start sessions via app, RFID card, or QR code, and pay through a single integrated flow. Stations update over the air with no site visits needed to stay current.',
+    body:      'Remote monitoring and real-time status from day one. Drivers will start sessions via app, RFID card, or QR code, and pay through a single integrated flow. Stations update over the air with no site visits needed to stay current.',
   },
 ]
 
@@ -567,8 +567,8 @@ function TechClose() {
           maxWidth:     '48ch',
           marginBottom: '2.75rem',
         }}>
-          From a single roadside station to a full bus depot, ValEV deploys
-          hardware and software built to perform consistently, every day.
+          From a single roadside station to a full bus depot, ValEV hardware
+          and software is built to perform consistently, every day.
         </p>
 
         {/* CTAs */}

@@ -241,7 +241,7 @@ function FleetSavingsCalc() {
                 lineHeight: 1,
               }}
             >
-              {monthly > 0 ? formatRupees(monthly) : '—'}
+              {monthly > 0 ? formatRupees(monthly) : '-'}
             </p>
           </div>
 
@@ -274,7 +274,7 @@ function FleetSavingsCalc() {
                 lineHeight: 1,
               }}
             >
-              {yearly > 0 ? formatRupees(yearly) : '—'}
+              {yearly > 0 ? formatRupees(yearly) : '-'}
             </p>
           </div>
         </div>
@@ -318,7 +318,7 @@ const FLEET_STEPS = [
   {
     n:     '04',
     title: 'Deployment',
-    body:  'ValEV installs, operates, and monitors the charging infrastructure — your fleet charges, we handle the rest.',
+    body:  'ValEV installs, operates, and monitors the charging infrastructure. Your fleet charges; we handle the rest.',
   },
 ]
 

@@ -21,7 +21,7 @@ const METRICS = [
   },
   {
     value: `₹${ESTIMATOR.hostPayoutPerUnit.toFixed(1)}`,
-    label: 'per kWh — your share',
+    label: 'per kWh, your share',
     note:  'illustrative rate',
   },
 ]

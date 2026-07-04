@@ -63,7 +63,7 @@ export default function Hero() {
         className="mt-6 text-lg sm:text-xl max-w-2xl leading-relaxed"
         style={{ color: "var(--color-silver-mid)" }}
       >
-        {BRAND.name} installs and manages fast EV chargers at restaurants, apartments, and offices —
+        {BRAND.name} installs and manages fast EV chargers at restaurants, apartments, and offices,
         at <strong style={{ color: "var(--color-silver-hi)" }}>zero cost to you</strong>. You earn
         passive revenue. Drivers charge and go.
       </motion.p>

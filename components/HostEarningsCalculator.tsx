@@ -163,7 +163,7 @@ export function HostEarningsCalculator() {
               padding: '14px 16px',
             }}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--silver-mid)', lineHeight: 'var(--leading-relaxed)' }}>
-                ValEV covers equipment, installation, and operations at no cost to you. Your payout is essentially net earning — you invest nothing to earn from every unit charged at your location.
+                ValEV covers equipment, installation, and operations at no cost to you. Your payout is essentially net earning: you invest nothing to earn from every unit charged at your location.
               </p>
             </div>
           </div>
@@ -214,7 +214,7 @@ export function HostEarningsCalculator() {
           {formatInr(earningsPerYear)}
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--silver-mid)' }}>
-          Net earning — no equipment cost, no installation cost, no franchise fee.
+          Net earning: no equipment cost, no installation cost, no franchise fee.
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-xs)', color: 'var(--silver-lo)', marginTop: '1rem', maxWidth: '56ch', marginInline: 'auto', lineHeight: 'var(--leading-relaxed)' }}>
           This is {HOST_EARNINGS_CALC.disclaimer}
@@ -224,7 +224,7 @@ export function HostEarningsCalculator() {
       {/* ── Indicative scenarios ── */}
       <div style={{ ...cardBase, marginBottom: '2rem' }}>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--silver-lo)', marginBottom: '1.25rem' }}>
-          Indicative scenarios — at ₹{payoutPerUnit.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}/kWh payout
+          Indicative scenarios at ₹{payoutPerUnit.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}/kWh payout
         </p>
         <div style={{
           display: 'grid',

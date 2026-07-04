@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${BRAND.name} — ${BRAND.tagline}`,
+  title: `${BRAND.name}: ${BRAND.tagline}`,
   description: BRAND.promise,
 };
 

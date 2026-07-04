@@ -8,7 +8,7 @@ import { IndiaMapBackdrop } from './IndiaMapBackdrop'
 const FACTS = [
   {
     n:    '01',
-    text: 'ValEV installs and operates DC fast charging stations at commercial venues across South India.',
+    text: 'ValEV is building a DC fast-charging network at commercial venues across South India.',
   },
   {
     n:    '02',
@@ -20,7 +20,7 @@ const FACTS = [
   },
   {
     n:    '04',
-    text: 'EV drivers access reliable CCS2 fast charging at everyday destinations — restaurants, offices, and apartment complexes.',
+    text: 'EV drivers will access reliable CCS2 fast charging at everyday destinations: restaurants, offices, and apartment complexes.',
   },
 ]
 
@@ -56,7 +56,7 @@ const SOUTH_POINTS = [
   },
   {
     heading: 'Key corridors underserved',
-    body: 'Major inter-city routes — including Hyderabad to Vijayawada and Tirupati — lack reliable fast-charging options, leaving a gap ValEV is positioned to address first.',
+    body: 'Major inter-city routes, including Hyderabad to Vijayawada and Tirupati, lack reliable fast-charging options, leaving a gap ValEV is positioned to address first.',
   },
   {
     heading: 'Supportive policy environment',
@@ -69,21 +69,21 @@ const AUDIENCES = [
   {
     eyebrow: 'EV Drivers',
     heading: 'Charge where you already stop.',
-    desc:    'Reliable CCS2 fast chargers at restaurants, offices, and apartment complexes — so you top up during a meal or a meeting, not at a standalone station out of your way.',
+    desc:    'Reliable CCS2 fast chargers at restaurants, offices, and apartment complexes. Top up during a meal or a meeting, not at a standalone station out of your way.',
     href:    '/technology',
     cta:     'Our technology',
   },
   {
     eyebrow: 'Property Hosts',
     heading: 'Earn from your parking space.',
-    desc:    'ValEV installs and operates at zero cost to you. You provide the space; we cover all equipment, maintenance, and driver support — and share the revenue on every session.',
+    desc:    'ValEV installs and operates at zero cost to you. You provide the space; we cover all equipment, maintenance, and driver support, sharing the revenue on every session.',
     href:    '/partner/host',
     cta:     'Become a host',
   },
   {
     eyebrow: 'Fleet Operators',
     heading: 'Charging built around your schedule.',
-    desc:    'Dedicated support for commercial fleets: session tracking, priority access, and infrastructure designed around regular, high-utilisation needs.',
+    desc:    'Designed for commercial fleets: session tracking, priority access, and infrastructure built around regular, high-utilisation needs.',
     href:    '/partner/fleet',
     cta:     'Fleet solutions',
   },
@@ -118,7 +118,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
               opacity:       0.75,
             }}
           >
-            Pre-launch &mdash; first station confirmed, operations beginning 2026
+            Pre-launch: first station confirmed, operations beginning 2026
           </p>
 
           {/* Page heading */}
@@ -198,7 +198,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-display)',
               fontSize:   'clamp(1.75rem, 3.5vw, 2.5rem)',
               color:      'var(--silver-hi)',
               lineHeight: 'var(--leading-snug)',
@@ -216,7 +216,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
               lineHeight: 'var(--leading-normal)',
             }}
           >
-            EV adoption in India is accelerating — driven by economics, policy, and a
+            EV adoption in India is accelerating, driven by economics, policy, and a
             generational shift in how people think about fuel. The gap that acceleration
             reveals is that charging infrastructure has not kept pace.
           </p>
@@ -279,7 +279,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-display)',
               fontSize:   'clamp(1.75rem, 3.5vw, 2.5rem)',
               color:      'var(--silver-hi)',
               lineHeight: 'var(--leading-snug)',
@@ -347,7 +347,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
           <h2
             className="font-bold tracking-tight max-w-2xl mb-5"
             style={{
-              fontFamily: 'var(--font-body)',
+              fontFamily: 'var(--font-display)',
               fontSize:   'clamp(1.75rem, 3.5vw, 2.5rem)',
               color:      'var(--silver-hi)',
               lineHeight: 'var(--leading-snug)',
@@ -443,7 +443,7 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
               opacity:       0.55,
             }}
           >
-            Pre-launch &mdash; first station confirmed, operations beginning 2026
+            Pre-launch: first station confirmed, operations beginning 2026
           </p>
 
         </div>

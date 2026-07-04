@@ -129,7 +129,7 @@ export const HOST_EARNINGS_CALC = {
   defaultCarsPerDay:    18,    // EV cars per day — typical city commercial location
   defaultUnitsPerCar:   30,    // kWh per session — typical DC fast-charge fill
   defaultPayoutPerUnit: 1.75,  // ₹ per kWh — illustrative host payout rate
-  disclaimer: 'an estimate, not a guarantee — actual earnings depend on traffic, session length, and agreed payout rates.',
+  disclaimer: 'an estimate, not a guarantee. Actual earnings depend on traffic, session length, and agreed payout rates.',
 } as const
 
 // ─── EV Savings Calculator ────────────────────────────────────────────────────
@@ -141,7 +141,7 @@ export const SAVINGS_CALC = {
   defaultChargingCost:  20,     // ₹/kWh — typical DC fast-charger tariff in India
   co2PerLitrePetrol:    2.31,   // kg CO2e per litre of petrol (IPCC factor)
   disclaimer:
-    'an estimate, not a guarantee — fuel prices and EV efficiency vary by vehicle and usage.',
+    'an estimate, not a guarantee. Fuel prices and EV efficiency vary by vehicle and usage.',
 } as const
 
 // ─── Partner page placeholder figures ────────────────────────────────────────
@@ -203,11 +203,11 @@ export const FLEET_SAVINGS_CALC = {
   weeksPerMonth:       4.33,
   weeksPerYear:        52,
   disclaimer:
-    'Indicative estimate — actual preferential rates are tailored to your fleet and discussed directly.',
+    'Indicative estimate. Actual preferential rates are tailored to your fleet and discussed directly.',
 } as const
 
 // ─── Team placeholders ────────────────────────────────────────────────────────
 export const TEAM = [
-  { name: '[Founder Name]',    role: 'Founder & CEO',    bio: 'Placeholder — add your bio here.' },
-  { name: '[Co-founder Name]', role: 'Co-founder & COO', bio: 'Placeholder — add your bio here.' },
+  { name: '[Founder Name]',    role: 'Founder & CEO',    bio: 'Placeholder. Add your bio here.' },
+  { name: '[Co-founder Name]', role: 'Co-founder & COO', bio: 'Placeholder. Add your bio here.' },
 ]

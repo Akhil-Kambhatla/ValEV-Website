@@ -10,7 +10,7 @@ const MODELS = [
     label:      'Franchise (FOCO)',
     desc:       'You invest and own the charging station. ValEV handles site selection, installation, technology, and full day-to-day operations and maintenance. Earn passively from every charging session.',
     highlights: [
-      'Passive income — no operational involvement',
+      'Passive income, no operational involvement',
       'ValEV operates end to end',
       'Suits investors, landowners, and businesses',
     ],
