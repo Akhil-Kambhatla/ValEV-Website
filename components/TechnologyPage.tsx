@@ -201,7 +201,7 @@ const CAPABILITIES = [
     stat:      'OTA',
     statLabel: 'software updates',
     title:     'Smart charging software',
-    body:      'Remote monitoring and real-time status from day one. Drivers will start sessions via app, RFID card, or QR code, and pay through a single integrated flow. Stations update over the air with no site visits needed to stay current.',
+    body:      'Remote monitoring and real-time status built in. Drivers start sessions via app, RFID card, or QR code, and pay through a single integrated flow. Stations update over the air with no site visits needed to stay current.',
   },
 ]
 

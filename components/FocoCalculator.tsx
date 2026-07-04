@@ -211,6 +211,9 @@ export function FocoCalculator() {
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--silver-lo)', lineHeight: 'var(--leading-relaxed)' }}>
               {totalDailyUnits.toLocaleString('en-IN')} kWh/day &times; 365 &times; &#8377;{FOCO_CALC.netProfitPerUnit}/unit net profit
             </p>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', color: 'var(--silver-lo)', lineHeight: 'var(--leading-relaxed)', marginTop: '0.4rem', opacity: 0.75 }}>
+              &#8377;{FOCO_CALC.netProfitPerUnit}/unit is an indicative figure for illustration. Actual net profit depends on tariff, utilisation, and operating costs.
+            </p>
           </div>
 
           <div style={cardBase}>

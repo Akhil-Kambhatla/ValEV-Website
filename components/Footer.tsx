@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Logo } from './Logo'
-import { BRAND, CONTACT, NAV_LINKS } from '@/lib/constants'
+import { BRAND, CONTACT, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants'
 
 // Server component — no event handlers; hover via CSS custom props.
 // Logo inside here is 'use client' but that's fine in a server component tree.
@@ -53,8 +53,15 @@ export function Footer() {
           >
             {BRAND.promise}
           </p>
+          <div className="flex gap-4 mt-auto pt-6">
+            {FOOTER_LINKS.map(({ label, href }) => (
+              <Link key={label} href={href} className="footer-link text-xs transition-colors duration-150">
+                {label}
+              </Link>
+            ))}
+          </div>
           <p
-            className="text-xs mt-auto pt-6"
+            className="text-xs"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--silver-lo)' }}
           >
             © {new Date().getFullYear()} {BRAND.legal}. All rights reserved.
