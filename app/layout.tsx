@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Chakra_Petch, Inter } from "next/font/google";
 import "./globals.css";
-import { BRAND } from "@/lib/constants";
+import { BRAND, CONTACT, SITE_URL } from "@/lib/constants";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { HashScrollHandler } from "@/components/HashScrollHandler";
@@ -18,6 +18,33 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ValEV',
+  legalName: 'Val Energy Pvt Ltd',
+  url: SITE_URL,
+  logo: `${SITE_URL}/valev-logo.svg`,
+  sameAs: [CONTACT.linkedin],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: `+${CONTACT.whatsapp}`,
+      contactType: 'customer service',
+    },
+    {
+      '@type': 'ContactPoint',
+      telephone: `+${CONTACT.whatsappSecondary}`,
+      contactType: 'customer service',
+    },
+    {
+      '@type': 'ContactPoint',
+      email: CONTACT.email,
+      contactType: 'customer service',
+    },
+  ],
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://valev.in'),
@@ -44,6 +71,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${chakraPetch.variable} ${inter.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
         <LogoPhaseProvider>
           <HashScrollHandler />
           <Navbar />
