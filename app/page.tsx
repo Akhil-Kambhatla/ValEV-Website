@@ -7,9 +7,9 @@ import { BusOperatorSection } from '@/components/BusOperatorSection'
 import { NetworkSection }     from '@/components/NetworkSection'
 
 export const metadata: Metadata = {
-  title: { absolute: 'ValEV - Fast Charging, Built for South India' },
+  title: { absolute: 'ValEV' },
   description:
-    "ValEV is building South India's EV fast-charging network, starting in Andhra Pradesh and Telangana. Coming soon to highways, hotels, and commercial hubs.",
+    'ValEV is building a super-fast EV charging network across Andhra Pradesh and Telangana. Reliable charging for drivers, earning opportunities for hosts.',
   alternates: { canonical: '/' },
   openGraph: { url: 'https://valev.in' },
 }
