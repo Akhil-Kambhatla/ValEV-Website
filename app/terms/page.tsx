@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Use | ValEV',
-  description: 'Terms for using the ValEV website.',
+  title: 'Terms of Use',
+  description:
+    'Terms of use for the ValEV website, a pre-launch informational site for Val Energy Pvt. Ltd. All figures are illustrative and not guarantees.',
+  alternates: { canonical: '/terms' },
 }
 
 export default function TermsPage() {

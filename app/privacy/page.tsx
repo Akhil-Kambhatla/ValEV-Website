@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | ValEV',
-  description: 'How ValEV collects and uses your information.',
+  title: 'Privacy Policy',
+  description:
+    'How ValEV (Val Energy Pvt. Ltd.) handles your data. We collect only what you submit, run no ad trackers, and never sell your information.',
+  alternates: { canonical: '/privacy' },
 }
 
 export default function PrivacyPage() {

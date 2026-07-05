@@ -20,8 +20,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${BRAND.name}: ${BRAND.tagline}`,
-  description: BRAND.promise,
+  metadataBase: new URL('https://valev.in'),
+  title: {
+    template: '%s | ValEV',
+    default: 'ValEV - Fast Charging, Built for South India',
+  },
+  description:
+    "ValEV is building South India's EV fast-charging network, starting in Andhra Pradesh and Telangana. Pre-launch.",
+  openGraph: {
+    siteName: 'ValEV',
+    type: 'website',
+    locale: 'en_IN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
