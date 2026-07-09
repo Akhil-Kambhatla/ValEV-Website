@@ -8,6 +8,7 @@ import { ChevronDown, Menu, X } from 'lucide-react'
 import { Logo } from './Logo'
 import { BRAND, NAV_LINKS } from '@/lib/constants'
 import { useLogoPhase } from '@/contexts/LogoPhase'
+import { GlowCTA, SecondaryBrighten } from './HoverInteractions'
 
 const PARTNER_SUB = [
   { label: 'Franchise (FOCO)', href: '/partner/franchise' },
@@ -194,26 +195,23 @@ export function Navbar() {
                           }}
                         >
                           {PARTNER_SUB.map(({ label: sub, href: subHref }) => (
-                            <Link
+                            <SecondaryBrighten
                               key={subHref}
                               href={subHref}
                               role="menuitem"
                               onClick={() => setPartnerOpen(false)}
-                              className="flex items-center px-3 py-2.5 rounded-md text-sm transition-colors duration-100 hover:text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:rounded-sm"
+                              className="flex items-center px-3 py-2.5 rounded-md text-sm focus-visible:outline-2 focus-visible:rounded-sm"
                               style={{
                                 fontFamily:  'var(--font-body)',
                                 color:       'var(--silver-mid)',
                                 whiteSpace:  'nowrap',
+                                backgroundColor: 'transparent',
                               }}
-                              onMouseEnter={e => {
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(52,224,224,0.06)'
-                              }}
-                              onMouseLeave={e => {
-                                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'
-                              }}
+                              hoverColor="var(--cyan)"
+                              hoverBackgroundColor="rgba(52,224,224,0.06)"
                             >
                               {sub}
-                            </Link>
+                            </SecondaryBrighten>
                           ))}
                         </div>
                       </motion.div>
@@ -241,38 +239,32 @@ export function Navbar() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-4">
           {/* "Host a Station" CTA */}
-          <Link
+          <GlowCTA
             href="/partner/host"
-            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-md text-sm font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4 focus-visible:rounded-md"
+            glow="0 0 22px rgba(255,178,62,0.32)"
+            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4 focus-visible:rounded-md"
             style={{
               fontFamily:      'var(--font-body)',
               backgroundColor: 'var(--cyan)',
               color:           'var(--bg-hero)',
             }}
-            onMouseEnter={e => {
-              ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 22px rgba(255,178,62,0.32)'
-            }}
-            onMouseLeave={e => {
-              ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-            }}
           >
             Host a Station
-          </Link>
+          </GlowCTA>
 
           {/* Hamburger (mobile only) */}
-          <button
+          <SecondaryBrighten
             type="button"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             onClick={() => setMobileOpen(o => !o)}
-            className="md:hidden p-1 rounded-sm transition-colors focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            className="md:hidden p-1 rounded-sm focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{ color: 'var(--silver-mid)' }}
-            onMouseEnter={e => { ;(e.currentTarget as HTMLElement).style.color = 'var(--silver-hi)' }}
-            onMouseLeave={e => { ;(e.currentTarget as HTMLElement).style.color = 'var(--silver-mid)' }}
+            hoverColor="var(--silver-hi)"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          </SecondaryBrighten>
         </div>
       </nav>
 

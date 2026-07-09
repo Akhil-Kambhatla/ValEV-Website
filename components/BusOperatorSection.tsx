@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { SectionWrapper } from './SectionWrapper'
+import { SecondaryBrighten } from './HoverInteractions'
 
 // Full-bleed image layer with a diagonal gradient overlay:
 //   upper-left  → near-opaque black  (text zone)
@@ -102,30 +102,23 @@ export function BusOperatorSection() {
             Bus and cab fleets get dedicated pricing and infrastructure placed exactly where they need it.
           </p>
 
-          <Link
+          <SecondaryBrighten
             href="/partner/fleet"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{
               fontFamily: 'var(--font-body)',
               fontSize:   'var(--text-body)',
               color:      'var(--cyan)',
               border:     '1.5px solid rgba(52,224,224,0.40)',
               borderRadius: '8px',
+              boxShadow: 'none',
             }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.80)'
-              el.style.boxShadow   = '0 0 20px rgba(52,224,224,0.14)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.40)'
-              el.style.boxShadow   = 'none'
-            }}
+            hoverBorderColor="rgba(52,224,224,0.80)"
+            hoverBoxShadow="0 0 20px rgba(52,224,224,0.14)"
           >
             Fleet partnership details
             <ChevronRight size={15} aria-hidden />
-          </Link>
+          </SecondaryBrighten>
         </div>
       </div>
     </SectionWrapper>

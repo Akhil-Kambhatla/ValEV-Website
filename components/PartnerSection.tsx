@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
+import { CardLift, GlowCTA } from './HoverInteractions'
 
 function ModelPill({
   label,
@@ -14,9 +14,9 @@ function ModelPill({
   href: string
 }) {
   return (
-    <Link
+    <CardLift
       href={href}
-      className="flex flex-col items-start text-left px-6 py-5 rounded-xl transition-[border-color] duration-200"
+      className="flex flex-col items-start text-left px-6 py-5 rounded-xl"
       style={{
         background:     'rgba(7,8,10,0.55)',
         border:         '1px solid rgba(52,224,224,0.12)',
@@ -24,12 +24,7 @@ function ModelPill({
         flex:           '1 1 0',
         minWidth:       '200px',
       }}
-      onMouseEnter={e => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(52,224,224,0.32)'
-      }}
-      onMouseLeave={e => {
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(52,224,224,0.12)'
-      }}
+      hoverBorderColor="rgba(52,224,224,0.32)"
     >
       <span
         className="font-semibold mb-1"
@@ -50,7 +45,7 @@ function ModelPill({
       >
         {desc}
       </span>
-    </Link>
+    </CardLift>
   )
 }
 
@@ -125,26 +120,20 @@ export function PartnerSection() {
         </div>
 
         {/* Primary CTA */}
-        <Link
+        <GlowCTA
           href="/partner"
-          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+          glow="0 0 28px rgba(52,224,224,0.32), 0 0 8px rgba(52,224,224,0.14)"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
           style={{
             fontFamily:      'var(--font-body)',
             backgroundColor: 'var(--cyan)',
             color:           'var(--bg-hero)',
             fontSize:        'var(--text-body)',
           }}
-          onMouseEnter={e => {
-            ;(e.currentTarget as HTMLElement).style.boxShadow =
-              '0 0 28px rgba(52,224,224,0.32), 0 0 8px rgba(52,224,224,0.14)'
-          }}
-          onMouseLeave={e => {
-            ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-          }}
         >
           Explore partnership
           <ChevronRight size={16} aria-hidden />
-        </Link>
+        </GlowCTA>
       </div>
     </BackdropSection>
   )

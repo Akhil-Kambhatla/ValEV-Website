@@ -1,13 +1,13 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { Logo } from './Logo'
 import { EVSilhouette } from './EVSilhouette'
 import { LightTrails } from './LightTrails'
 import { ParticleWave } from './ParticleWave'
+import { GlowCTA, SecondaryBrighten } from './HoverInteractions'
 import { useLogoPhase } from '@/contexts/LogoPhase'
 
 const EASE      = [0.25, 0.46, 0.45, 0.94] as const
@@ -226,49 +226,34 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link
+            <GlowCTA
               href="/partner"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
               style={{
                 fontFamily:      'var(--font-body)',
                 backgroundColor: 'var(--cyan)',
                 color:           'var(--bg-hero)',
                 fontSize:        'var(--text-body)',
               }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  '0 0 28px rgba(52,224,224,0.32), 0 0 8px rgba(52,224,224,0.18)'
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = 'none'
-              }}
             >
               Partner with us
-            </Link>
+            </GlowCTA>
 
-            <a
+            <SecondaryBrighten
               href="/technology"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
               style={{
                 fontFamily: 'var(--font-body)',
                 border:     '1px solid rgba(52,224,224,0.22)',
                 color:      'var(--silver-mid)',
                 fontSize:   'var(--text-body)',
               }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(52,224,224,0.45)'
-                el.style.color       = 'var(--silver-hi)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(52,224,224,0.22)'
-                el.style.color       = 'var(--silver-mid)'
-              }}
+              hoverBorderColor="rgba(52,224,224,0.45)"
+              hoverColor="var(--silver-hi)"
             >
               Our technology
               <ChevronRight size={15} aria-hidden />
-            </a>
+            </SecondaryBrighten>
           </div>
         </motion.div>
       )}

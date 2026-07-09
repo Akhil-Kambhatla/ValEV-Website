@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { SectionWrapper } from './SectionWrapper'
+import { SecondaryBrighten } from './HoverInteractions'
 
 const NEON_CSS = `
   @keyframes cs-breathe {
@@ -207,29 +207,21 @@ export function ChargerSection() {
             Fast enough that the wait becomes the break.
           </p>
 
-          <Link
+          <SecondaryBrighten
             href="/technology"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{
               fontFamily: 'var(--font-body)',
               fontSize:   'var(--text-body)',
               border:     '1px solid rgba(52,224,224,0.22)',
               color:      'var(--silver-mid)',
             }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.50)'
-              el.style.color       = 'var(--silver-hi)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.22)'
-              el.style.color       = 'var(--silver-mid)'
-            }}
+            hoverBorderColor="rgba(52,224,224,0.50)"
+            hoverColor="var(--silver-hi)"
           >
             More about technology
             <ChevronRight size={15} aria-hidden />
-          </Link>
+          </SecondaryBrighten>
         </div>
       </div>
     </SectionWrapper>

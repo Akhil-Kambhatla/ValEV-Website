@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { SectionWrapper } from './SectionWrapper'
+import { SecondaryBrighten } from './HoverInteractions'
 
 export function AboutTeaser() {
   return (
@@ -36,14 +36,16 @@ export function AboutTeaser() {
 
         {/* CTA */}
         <div className="flex-shrink-0">
-          <Link
+          <SecondaryBrighten
             href="/about"
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-md text-sm font-medium transition-[border-color,background-color] duration-150 border border-[rgba(52,224,224,0.25)] text-[color:var(--cyan)] hover:border-[rgba(52,224,224,0.55)] hover:bg-[rgba(52,224,224,0.04)] focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-md text-sm font-medium border border-[rgba(52,224,224,0.25)] text-[color:var(--cyan)] focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{ fontFamily: 'var(--font-body)' }}
+            hoverBorderColor="rgba(52,224,224,0.55)"
+            hoverBackgroundColor="rgba(52,224,224,0.04)"
           >
             About ValEV
             <ArrowRight size={15} aria-hidden />
-          </Link>
+          </SecondaryBrighten>
         </div>
 
       </div>
