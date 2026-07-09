@@ -7,6 +7,7 @@ import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { CONTACT, FLEET_SAVINGS_CALC } from '@/lib/constants'
 import { SectionWrapper, EASE } from './SectionWrapper'
 import { StaggerGrid, StaggerItem } from './StaggerGrid'
+import { AnimatedNumber } from './AnimatedNumber'
 
 const waFleet =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
@@ -92,6 +93,7 @@ function FleetSavingsCalc() {
   const [savings,      setSavings]      = useState<number>(defaultSavings)
   const [vehicles,     setVehicles]     = useState<number>(defaultVehicles)
   const [chargesPerWk, setChargesPerWk] = useState<number>(defaultChargesPerWk)
+  const [isDraggingVehicles, setIsDraggingVehicles] = useState(false)
 
   const v       = Math.max(vehiclesMin, Math.min(vehiclesMax, vehicles || 0))
   const monthly = Math.round(savings * v * chargesPerWk * weeksPerMonth)
@@ -183,6 +185,9 @@ function FleetSavingsCalc() {
                 max={vehiclesMax}
                 value={v}
                 onChange={e => setVehicles(Number(e.target.value))}
+                onPointerDown={() => setIsDraggingVehicles(true)}
+                onPointerUp={() => setIsDraggingVehicles(false)}
+                onPointerCancel={() => setIsDraggingVehicles(false)}
                 className="w-full"
                 style={{ accentColor: 'var(--cyan)' }}
               />
@@ -247,7 +252,7 @@ function FleetSavingsCalc() {
                   lineHeight: 1,
                 }}
               >
-                {monthly > 0 ? formatRupees(monthly) : '-'}
+                {monthly > 0 ? <AnimatedNumber value={monthly} format={formatRupees} instant={isDraggingVehicles} /> : '-'}
               </p>
             </div>
 
@@ -280,7 +285,7 @@ function FleetSavingsCalc() {
                   lineHeight: 1,
                 }}
               >
-                {yearly > 0 ? formatRupees(yearly) : '-'}
+                {yearly > 0 ? <AnimatedNumber value={yearly} format={formatRupees} instant={isDraggingVehicles} /> : '-'}
               </p>
             </div>
           </div>

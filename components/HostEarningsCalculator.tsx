@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { HOST_EARNINGS_CALC, CONTACT } from '@/lib/constants'
+import { AnimatedNumber } from './AnimatedNumber'
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
@@ -21,10 +22,11 @@ function formatInr(n: number): string {
 }
 
 function SliderField({
-  id, label, value, min, max, step = 1, unit, onChange,
+  id, label, value, min, max, step = 1, unit, onChange, onDragStateChange,
 }: {
   id: string; label: string; value: number; min: number; max: number
   step?: number; unit: string; onChange: (v: number) => void
+  onDragStateChange?: (dragging: boolean) => void
 }) {
   return (
     <div>
@@ -39,6 +41,9 @@ function SliderField({
       <input
         id={id} type="range" min={min} max={max} step={step} value={value}
         onChange={e => onChange(Number(e.target.value))}
+        onPointerDown={() => onDragStateChange?.(true)}
+        onPointerUp={() => onDragStateChange?.(false)}
+        onPointerCancel={() => onDragStateChange?.(false)}
         aria-valuemin={min} aria-valuemax={max} aria-valuenow={value}
         style={{ width: '100%', accentColor: 'var(--cyan)', cursor: 'pointer' }}
       />
@@ -95,6 +100,7 @@ export function HostEarningsCalculator() {
   const [carsPerDay,    setCarsPerDay]    = useState<number>(HOST_EARNINGS_CALC.defaultCarsPerDay)
   const [unitsPerCar,   setUnitsPerCar]   = useState<number>(HOST_EARNINGS_CALC.defaultUnitsPerCar)
   const [payoutPerUnit, setPayoutPerUnit] = useState<number>(HOST_EARNINGS_CALC.defaultPayoutPerUnit)
+  const [isDraggingSlider, setIsDraggingSlider] = useState(false)
 
   const unitsPerDay      = carsPerDay * unitsPerCar
   const earningsPerDay   = unitsPerDay * payoutPerUnit
@@ -135,6 +141,7 @@ export function HostEarningsCalculator() {
               min={1} max={60}
               unit="cars/day"
               onChange={setCarsPerDay}
+              onDragStateChange={setIsDraggingSlider}
             />
             <SliderField
               id="units-per-car"
@@ -143,6 +150,7 @@ export function HostEarningsCalculator() {
               min={5} max={80}
               unit="kWh"
               onChange={setUnitsPerCar}
+              onDragStateChange={setIsDraggingSlider}
             />
           </div>
 
@@ -179,19 +187,17 @@ export function HostEarningsCalculator() {
           overflow: 'hidden',
         }}>
           {([
-            { period: 'Units / day',  value: unitsPerDay,      suffix: ' kWh', isCyan: false },
-            { period: 'Per day',      value: earningsPerDay,   suffix: '',     isCyan: false },
-            { period: 'Per month',    value: earningsPerMonth, suffix: '',     isCyan: false },
-            { period: 'Per year',     value: earningsPerYear,  suffix: '',     isCyan: false },
-          ] as const).map(({ period, value, suffix, isCyan }) => (
+            { period: 'Units / day',  value: unitsPerDay,      format: (n: number) => `${Math.round(n).toLocaleString('en-IN')} kWh`, isCyan: false },
+            { period: 'Per day',      value: earningsPerDay,   format: formatInr, isCyan: false },
+            { period: 'Per month',    value: earningsPerMonth, format: formatInr, isCyan: false },
+            { period: 'Per year',     value: earningsPerYear,  format: formatInr, isCyan: false },
+          ] as const).map(({ period, value, format, isCyan }) => (
             <div key={period} style={{ backgroundColor: '#0F1117', padding: '1.25rem', textAlign: 'center' }}>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--silver-lo)', marginBottom: '0.75rem' }}>
                 {period}
               </p>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 700, color: isCyan ? 'var(--cyan)' : 'var(--silver-hi)', lineHeight: 1.1 }}>
-                {period === 'Units / day'
-                  ? `${value.toLocaleString('en-IN')}${suffix}`
-                  : formatInr(value)}
+                <AnimatedNumber value={value} format={format} instant={isDraggingSlider} />
               </p>
             </div>
           ))}
@@ -211,7 +217,7 @@ export function HostEarningsCalculator() {
           Estimated annual earning
         </p>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 700, color: 'var(--cyan)', lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
-          {formatInr(earningsPerYear)}
+          <AnimatedNumber value={earningsPerYear} format={formatInr} instant={isDraggingSlider} />
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--silver-mid)' }}>
           Net earning: no equipment cost, no installation cost, no franchise fee.
@@ -251,10 +257,10 @@ export function HostEarningsCalculator() {
                   {cars} cars · {units} kWh
                 </p>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)', fontWeight: 700, color: isTypical ? 'var(--cyan)' : 'var(--silver-hi)', marginBottom: '0.25rem' }}>
-                  {formatInr(monthly)}<span style={{ fontWeight: 400, fontSize: '0.75em', color: 'var(--silver-lo)' }}>/mo</span>
+                  <AnimatedNumber value={monthly} format={formatInr} /><span style={{ fontWeight: 400, fontSize: '0.75em', color: 'var(--silver-lo)' }}>/mo</span>
                 </p>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--silver-lo)' }}>
-                  {formatInr(annual)}/yr
+                  <AnimatedNumber value={annual} format={formatInr} />/yr
                 </p>
               </div>
             )

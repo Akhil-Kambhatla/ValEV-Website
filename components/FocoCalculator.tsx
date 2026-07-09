@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { FOCO_CALC, CONTACT } from '@/lib/constants'
+import { AnimatedNumber } from './AnimatedNumber'
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
@@ -175,7 +176,7 @@ export function FocoCalculator() {
             Total setup cost
           </p>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, color: 'var(--silver-hi)', lineHeight: 1.1, marginBottom: '1.25rem' }}>
-            {formatInr(totalSetup)}
+            <AnimatedNumber value={totalSetup} format={formatInr} />
           </p>
 
           <div style={{ borderTop: '1px solid rgba(52,224,224,0.07)', paddingTop: '0.875rem' }}>
@@ -206,7 +207,7 @@ export function FocoCalculator() {
               Estimated annual earnings
             </p>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, color: 'var(--cyan)', lineHeight: 1.1, marginBottom: '0.5rem' }}>
-              {formatInr(annualEarnings)}
+              <AnimatedNumber value={annualEarnings} format={formatInr} />
             </p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--silver-lo)', lineHeight: 'var(--leading-relaxed)' }}>
               {totalDailyUnits.toLocaleString('en-IN')} kWh/day &times; 365 &times; &#8377;{FOCO_CALC.netProfitPerUnit}/unit net profit
@@ -221,7 +222,7 @@ export function FocoCalculator() {
               Indicative payback
             </p>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(1.25rem, 2.5vw, 1.875rem)', fontWeight: 700, color: 'var(--silver-hi)', lineHeight: 1.1, marginBottom: '0.5rem' }}>
-              {formatPayback(paybackYears)}
+              <AnimatedNumber value={paybackYears} format={formatPayback} />
             </p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'var(--silver-lo)', lineHeight: 'var(--leading-relaxed)' }}>
               Setup cost vs. annual earnings
