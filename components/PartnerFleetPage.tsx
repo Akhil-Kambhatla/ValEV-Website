@@ -8,6 +8,7 @@ import { CONTACT, FLEET_SAVINGS_CALC } from '@/lib/constants'
 import { SectionWrapper, EASE } from './SectionWrapper'
 import { StaggerGrid, StaggerItem } from './StaggerGrid'
 import { AnimatedNumber } from './AnimatedNumber'
+import { GlowCTA } from './HoverInteractions'
 
 const waFleet =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
@@ -20,28 +21,21 @@ function formatRupees(n: number): string {
 
 function WaButton({ href, label = 'Talk to us on WhatsApp' }: { href: string; label?: string }) {
   return (
-    <a
+    <GlowCTA
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+      external
+      glow="0 0 28px rgba(52,224,224,0.28), 0 0 8px rgba(52,224,224,0.14)"
+      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
       style={{
         fontFamily:      'var(--font-body)',
         backgroundColor: 'var(--cyan)',
         color:           'var(--bg-hero)',
         fontSize:        'var(--text-body)',
       }}
-      onMouseEnter={e => {
-        ;(e.currentTarget as HTMLElement).style.boxShadow =
-          '0 0 28px rgba(52,224,224,0.28), 0 0 8px rgba(52,224,224,0.14)'
-      }}
-      onMouseLeave={e => {
-        ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-      }}
     >
       <MessageCircle size={17} aria-hidden />
       {label}
-    </a>
+    </GlowCTA>
   )
 }
 

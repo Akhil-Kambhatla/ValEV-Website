@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ChevronRight, Zap, Plug, Shield, Wifi } from 'lucide-react'
 import { SectionWrapper } from './SectionWrapper'
 import { StaggerGrid, StaggerItem } from './StaggerGrid'
+import { GlowCTA, SecondaryBrighten } from './HoverInteractions'
 import { CONTACT } from '@/lib/constants'
 
 const TECH_WA_URL =
@@ -576,52 +577,36 @@ function TechClose() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
 
           {/* Primary: WhatsApp */}
-          <a
+          <GlowCTA
             href={TECH_WA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            external
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{
               fontFamily:      'var(--font-body)',
               backgroundColor: 'var(--cyan)',
               color:           'var(--bg-hero)',
               fontSize:        'var(--text-body)',
             }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.boxShadow =
-                '0 0 28px rgba(52,224,224,0.32), 0 0 8px rgba(52,224,224,0.18)'
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.boxShadow = 'none'
-            }}
           >
             Talk to us
-          </a>
+          </GlowCTA>
 
           {/* Secondary: Partner section on homepage */}
-          <a
+          <SecondaryBrighten
             href="/#partner"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
             style={{
               fontFamily: 'var(--font-body)',
               border:     '1px solid rgba(52,224,224,0.22)',
               color:      'var(--silver-mid)',
               fontSize:   'var(--text-body)',
             }}
-            onMouseEnter={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.45)'
-              el.style.color       = 'var(--silver-hi)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(52,224,224,0.22)'
-              el.style.color       = 'var(--silver-mid)'
-            }}
+            hoverBorderColor="rgba(52,224,224,0.45)"
+            hoverColor="var(--silver-hi)"
           >
             Become a partner
             <ChevronRight size={15} aria-hidden />
-          </a>
+          </SecondaryBrighten>
 
         </div>
       </div>

@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { HOST_EARNINGS_CALC, CONTACT } from '@/lib/constants'
 import { AnimatedNumber } from './AnimatedNumber'
+import { GlowCTA } from './HoverInteractions'
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
@@ -270,10 +271,10 @@ export function HostEarningsCalculator() {
 
       {/* ── WhatsApp CTA ── */}
       <div style={{ textAlign: 'center' }}>
-        <a
+        <GlowCTA
           href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          external
+          glow="0 0 28px rgba(52,224,224,0.32)"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -286,14 +287,11 @@ export function HostEarningsCalculator() {
             borderRadius: '8px',
             padding: '14px 28px',
             textDecoration: 'none',
-            transition: 'box-shadow 200ms ease',
           }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(52,224,224,0.32)' }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}
         >
           <MessageCircle size={18} aria-hidden />
           Talk to us on WhatsApp
-        </a>
+        </GlowCTA>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-xs)', color: 'var(--silver-lo)', marginTop: '0.75rem', lineHeight: 'var(--leading-relaxed)' }}>
           Opens WhatsApp with your estimated monthly earning ({formatInr(earningsPerMonth)}) pre-filled.
         </p>

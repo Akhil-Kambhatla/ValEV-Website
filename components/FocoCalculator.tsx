@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 import { FOCO_CALC, CONTACT } from '@/lib/constants'
 import { AnimatedNumber } from './AnimatedNumber'
+import { GlowCTA } from './HoverInteractions'
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
@@ -232,17 +233,15 @@ export function FocoCalculator() {
       </div>
 
       {/* WhatsApp CTA */}
-      <a
+      <GlowCTA
         href={waUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-body)', fontSize: 'var(--text-body)', fontWeight: 600, backgroundColor: 'var(--cyan)', color: 'var(--bg-hero)', borderRadius: '8px', padding: '14px 28px', textDecoration: 'none', transition: 'box-shadow 200ms ease' }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 0 28px rgba(52,224,224,0.32)' }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}
+        external
+        glow="0 0 28px rgba(52,224,224,0.32)"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'var(--font-body)', fontSize: 'var(--text-body)', fontWeight: 600, backgroundColor: 'var(--cyan)', color: 'var(--bg-hero)', borderRadius: '8px', padding: '14px 28px', textDecoration: 'none' }}
       >
         <MessageCircle size={18} aria-hidden />
         Talk to us on WhatsApp
-      </a>
+      </GlowCTA>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', color: 'var(--silver-lo)', marginTop: '0.75rem', lineHeight: 'var(--leading-relaxed)' }}>
         Opens WhatsApp with your configuration ({configStr} kW) pre-filled.
       </p>

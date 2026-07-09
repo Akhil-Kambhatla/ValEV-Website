@@ -6,6 +6,7 @@ import type { LucideIcon } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { SectionWrapper } from './SectionWrapper'
 import { StaggerGrid, StaggerItem } from './StaggerGrid'
+import { GlowCTA } from './HoverInteractions'
 import { CONTACT } from '@/lib/constants'
 
 const waHost =
@@ -16,28 +17,21 @@ const waEarnings =
 
 function WaButton({ href, label = 'Talk to us on WhatsApp' }: { href: string; label?: string }) {
   return (
-    <a
+    <GlowCTA
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-medium transition-[box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+      external
+      glow="0 0 28px rgba(52,224,224,0.28), 0 0 8px rgba(52,224,224,0.14)"
+      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
       style={{
         fontFamily:      'var(--font-body)',
         backgroundColor: 'var(--cyan)',
         color:           'var(--bg-hero)',
         fontSize:        'var(--text-body)',
       }}
-      onMouseEnter={e => {
-        ;(e.currentTarget as HTMLElement).style.boxShadow =
-          '0 0 28px rgba(52,224,224,0.28), 0 0 8px rgba(52,224,224,0.14)'
-      }}
-      onMouseLeave={e => {
-        ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
-      }}
     >
       <MessageCircle size={17} aria-hidden />
       {label}
-    </a>
+    </GlowCTA>
   )
 }
 

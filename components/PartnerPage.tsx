@@ -1,10 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { SectionWrapper } from './SectionWrapper'
 import { StaggerGrid, StaggerItem } from './StaggerGrid'
+import { CardLift, SecondaryBrighten } from './HoverInteractions'
 
 const MODELS = [
   {
@@ -54,14 +54,16 @@ function ModelCard({
   cta,
 }: (typeof MODELS)[number]) {
   return (
-    <StaggerItem
-      className="flex flex-col p-8 rounded-2xl"
-      style={{
-        background:     'rgba(7,8,10,0.55)',
-        border:         '1px solid rgba(52,224,224,0.12)',
-        backdropFilter: 'blur(6px)',
-      }}
-    >
+    <StaggerItem>
+      <CardLift
+        className="flex flex-col p-8 rounded-2xl"
+        style={{
+          background:     'rgba(7,8,10,0.55)',
+          border:         '1px solid rgba(52,224,224,0.12)',
+          backdropFilter: 'blur(6px)',
+        }}
+        hoverBorderColor="rgba(52,224,224,0.32)"
+      >
       <p
         className="uppercase tracking-widest mb-3"
         style={{
@@ -125,30 +127,23 @@ function ModelCard({
       </ul>
 
       <div className="mt-auto">
-        <Link
+        <SecondaryBrighten
           href={href}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-[border-color,color] duration-200 focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium focus-visible:outline-2 focus-visible:outline-[color:var(--cyan)] focus-visible:outline-offset-4"
           style={{
             fontFamily: 'var(--font-body)',
             border:     '1px solid rgba(52,224,224,0.28)',
             color:      'var(--silver-hi)',
             fontSize:   'var(--text-body)',
           }}
-          onMouseEnter={e => {
-            const el = e.currentTarget as HTMLElement
-            el.style.borderColor = 'rgba(52,224,224,0.60)'
-            el.style.color       = 'var(--cyan)'
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget as HTMLElement
-            el.style.borderColor = 'rgba(52,224,224,0.28)'
-            el.style.color       = 'var(--silver-hi)'
-          }}
+          hoverBorderColor="rgba(52,224,224,0.60)"
+          hoverColor="var(--cyan)"
         >
           {cta}
           <ChevronRight size={15} aria-hidden />
-        </Link>
+        </SecondaryBrighten>
       </div>
+      </CardLift>
     </StaggerItem>
   )
 }
