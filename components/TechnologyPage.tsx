@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ChevronRight, Zap, Plug, Shield, Wifi } from 'lucide-react'
 import { SectionWrapper } from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 import { CONTACT } from '@/lib/constants'
 
 const TECH_WA_URL =
@@ -235,12 +236,12 @@ function TechCapabilities() {
         </div>
 
         {/* 2×2 capability grid — hairline separators, matching hero stats style */}
-        <div
+        <StaggerGrid
           className="grid grid-cols-1 sm:grid-cols-2 gap-px overflow-hidden rounded-xl"
           style={{ background: 'rgba(52,224,224,0.07)', border: '1px solid rgba(52,224,224,0.09)' }}
         >
           {CAPABILITIES.map(({ Icon, stat, statLabel, title, body }) => (
-            <div
+            <StaggerItem
               key={title}
               style={{
                 background: 'var(--bg-s2)',
@@ -308,9 +309,9 @@ function TechCapabilities() {
               }}>
                 {body}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGrid>
 
       </div>
     </SectionWrapper>

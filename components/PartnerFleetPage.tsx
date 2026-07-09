@@ -6,6 +6,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { CONTACT, FLEET_SAVINGS_CALC } from '@/lib/constants'
 import { SectionWrapper, EASE } from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 
 const waFleet =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
@@ -359,9 +360,9 @@ function FleetProcessStrip() {
           >
             From first conversation to first charge
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {FLEET_STEPS.map(({ n, title, body }) => (
-              <div
+              <StaggerItem
                 key={n}
                 className="flex flex-col gap-3 p-6 rounded-xl"
                 style={{
@@ -403,9 +404,9 @@ function FleetProcessStrip() {
                 >
                   {body}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </div>
     </SectionWrapper>

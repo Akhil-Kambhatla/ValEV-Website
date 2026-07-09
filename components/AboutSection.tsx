@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { SectionWrapper } from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 import { IndiaMapBackdrop } from './IndiaMapBackdrop'
 
 // ── Mission: numbered facts ───────────────────────────────────────────────────
@@ -153,9 +154,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
           </p>
 
           {/* Numbered facts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
             {FACTS.map(({ n, text }) => (
-              <div
+              <StaggerItem
                 key={n}
                 className="flex gap-6 py-7"
                 style={{ borderTop: '1px solid rgba(52,224,224,0.06)' }}
@@ -184,9 +185,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
                 >
                   {text}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
 
         </div>
       </SectionWrapper>
@@ -221,9 +222,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
             reveals is that charging infrastructure has not kept pace.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {EV_POINTS.map(({ figure, label, desc }) => (
-              <div
+              <StaggerItem
                 key={label}
                 className="rounded-xl p-6 md:p-8 flex flex-col gap-3"
                 style={{
@@ -265,9 +266,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
                 >
                   {desc}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
 
         </div>
       </SectionWrapper>
@@ -303,9 +304,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
             is greatest and the policy environment supports early deployment.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-0">
             {SOUTH_POINTS.map(({ heading, body }) => (
-              <div
+              <StaggerItem
                 key={heading}
                 className="py-7 md:pr-10"
                 style={{ borderTop: '1px solid rgba(52,224,224,0.08)' }}
@@ -333,9 +334,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
                 >
                   {body}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
 
         </div>
       </SectionWrapper>
@@ -369,9 +370,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
             businesses that want to offer it, and fleets that depend on it.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {AUDIENCES.map(({ eyebrow, heading, desc, href, cta }) => (
-              <div
+              <StaggerItem
                 key={eyebrow}
                 className="rounded-xl p-7 flex flex-col gap-4"
                 style={{
@@ -427,9 +428,9 @@ export function AboutSection({ standalone = false }: { standalone?: boolean }) {
                 >
                   {cta} &rarr;
                 </Link>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
 
           {/* Pre-launch footer note */}
           <p

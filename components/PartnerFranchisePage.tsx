@@ -6,6 +6,7 @@ import { BackdropSection } from './BackdropSection'
 import { FocoCalculator }  from './FocoCalculator'
 import { CyanLights }      from './CyanLights'
 import { SectionWrapper }  from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 import { CONTACT, PARTNER_PLACEHOLDERS as P } from '@/lib/constants'
 
 const waFoco =
@@ -103,9 +104,9 @@ function ProcessStrip() {
           >
             From first call to first charge
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {STEPS.map(({ n, title, body }) => (
-              <div
+              <StaggerItem
                 key={n}
                 className="flex flex-col gap-3 p-6 rounded-xl"
                 style={{ background: 'rgba(7,8,10,0.50)', border: '1px solid rgba(52,224,224,0.09)' }}
@@ -144,9 +145,9 @@ function ProcessStrip() {
                 >
                   {body}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </div>
     </SectionWrapper>

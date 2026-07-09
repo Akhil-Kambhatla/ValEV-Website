@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { SectionWrapper } from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 
 const MODELS = [
   {
@@ -53,7 +54,7 @@ function ModelCard({
   cta,
 }: (typeof MODELS)[number]) {
   return (
-    <div
+    <StaggerItem
       className="flex flex-col p-8 rounded-2xl"
       style={{
         background:     'rgba(7,8,10,0.55)',
@@ -148,7 +149,7 @@ function ModelCard({
           <ChevronRight size={15} aria-hidden />
         </Link>
       </div>
-    </div>
+    </StaggerItem>
   )
 }
 
@@ -217,11 +218,11 @@ export function PartnerPage() {
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
-            <div className="grid md:grid-cols-3 gap-6">
+            <StaggerGrid className="grid md:grid-cols-3 gap-6">
               {MODELS.map(m => (
                 <ModelCard key={m.href} {...m} />
               ))}
-            </div>
+            </StaggerGrid>
           </div>
         </div>
       </SectionWrapper>

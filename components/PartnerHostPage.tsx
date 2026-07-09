@@ -5,6 +5,7 @@ import { MessageCircle, CheckCircle2, ChevronLeft, Banknote, Zap, Layers } from 
 import type { LucideIcon } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { SectionWrapper } from './SectionWrapper'
+import { StaggerGrid, StaggerItem } from './StaggerGrid'
 import { CONTACT } from '@/lib/constants'
 
 const waHost =
@@ -62,7 +63,7 @@ function EarningCard({
   description: string
 }) {
   return (
-    <div
+    <StaggerItem
       className="flex flex-col gap-4 p-6 rounded-xl"
       style={{
         background:     'rgba(7,8,10,0.55)',
@@ -99,7 +100,7 @@ function EarningCard({
           {description}
         </p>
       </div>
-    </div>
+    </StaggerItem>
   )
 }
 
@@ -203,7 +204,7 @@ export function PartnerHostPage() {
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 <EarningCard
                   Icon={Banknote}
                   title="Fixed Rent"
@@ -219,7 +220,7 @@ export function PartnerHostPage() {
                   title="Hybrid"
                   description="A base monthly rent plus a per-unit share on top. Balances a guaranteed floor with upside as usage grows."
                 />
-              </div>
+              </StaggerGrid>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
                 <p
