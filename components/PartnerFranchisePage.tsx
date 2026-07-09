@@ -5,6 +5,7 @@ import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
 import { FocoCalculator }  from './FocoCalculator'
 import { CyanLights }      from './CyanLights'
+import { SectionWrapper }  from './SectionWrapper'
 import { CONTACT, PARTNER_PLACEHOLDERS as P } from '@/lib/constants'
 
 const waFoco =
@@ -83,83 +84,72 @@ const STEPS = [
 
 function ProcessStrip() {
   return (
-    <section
-      style={{
-        paddingBlock:    'clamp(56px, 8vh, 88px)',
-        paddingInline:   'clamp(20px, 5vw, 72px)',
-        backgroundColor: 'var(--bg-s3)',
-        position:        'relative',
-        overflow:        'hidden',
-      }}
-    >
-      <CyanLights />
+    <SectionWrapper bg="s3" ambientLayer={<CyanLights />}>
       <div
-        aria-hidden
         style={{
-          height:     '1px',
-          background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
-          position:   'relative',
-          zIndex:     1,
+          paddingBlock:  'clamp(56px, 8vh, 88px)',
+          paddingInline: 'clamp(20px, 5vw, 72px)',
         }}
-      />
-      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px', position: 'relative', zIndex: 1 }}>
-        <h2
-          className="text-center mb-12 font-bold tracking-tight"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize:   'var(--text-h2)',
-            color:      'var(--silver-hi)',
-            lineHeight: 'var(--leading-snug)',
-          }}
-        >
-          From first call to first charge
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STEPS.map(({ n, title, body }) => (
-            <div
-              key={n}
-              className="flex flex-col gap-3 p-6 rounded-xl"
-              style={{ background: 'rgba(7,8,10,0.50)', border: '1px solid rgba(52,224,224,0.09)' }}
-            >
-              <span
-                style={{
-                  fontFamily:    'var(--font-mono)',
-                  fontSize:      '1.5rem',
-                  fontWeight:    700,
-                  color:         'var(--cyan)',
-                  opacity:       0.6,
-                  lineHeight:    1,
-                  letterSpacing: '0.02em',
-                }}
+      >
+        <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+          <h2
+            className="text-center mb-12 font-bold tracking-tight"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize:   'var(--text-h2)',
+              color:      'var(--silver-hi)',
+              lineHeight: 'var(--leading-snug)',
+            }}
+          >
+            From first call to first charge
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {STEPS.map(({ n, title, body }) => (
+              <div
+                key={n}
+                className="flex flex-col gap-3 p-6 rounded-xl"
+                style={{ background: 'rgba(7,8,10,0.50)', border: '1px solid rgba(52,224,224,0.09)' }}
               >
-                {n}
-              </span>
-              <h3
-                className="font-semibold"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize:   '1rem',
-                  color:      'var(--silver-hi)',
-                  lineHeight: 'var(--leading-snug)',
-                }}
-              >
-                {title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize:   'var(--text-body-sm, 0.8125rem)',
-                  color:      'var(--silver-mid)',
-                  lineHeight: 'var(--leading-normal)',
-                }}
-              >
-                {body}
-              </p>
-            </div>
-          ))}
+                <span
+                  style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '1.5rem',
+                    fontWeight:    700,
+                    color:         'var(--cyan)',
+                    opacity:       0.6,
+                    lineHeight:    1,
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {n}
+                </span>
+                <h3
+                  className="font-semibold"
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize:   '1rem',
+                    color:      'var(--silver-hi)',
+                    lineHeight: 'var(--leading-snug)',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize:   'var(--text-body-sm, 0.8125rem)',
+                    color:      'var(--silver-mid)',
+                    lineHeight: 'var(--leading-normal)',
+                  }}
+                >
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 
@@ -235,15 +225,12 @@ export function PartnerFranchisePage() {
       </BackdropSection>
 
       {/* FOCO content */}
-      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
-        <CyanLights />
-        <section
+      <SectionWrapper bg="s2" ambientLayer={<CyanLights />}>
+        <div
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
-            position:        'relative',
-            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -329,58 +316,45 @@ export function PartnerFranchisePage() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </SectionWrapper>
 
       {/* FOCO Calculator */}
-      <section
-        style={{
-          paddingBlock:    'clamp(56px, 8vh, 96px)',
-          paddingInline:   'clamp(20px, 5vw, 72px)',
-          backgroundColor: 'var(--bg-s2)',
-          position:        'relative',
-          overflow:        'hidden',
-        }}
-      >
-        <CyanLights flip />
-        {/* Hairline separator */}
+      <SectionWrapper bg="s2" ambientLayer={<CyanLights flip />}>
         <div
-          aria-hidden
           style={{
-            position:   'absolute',
-            top:        0, left: 0, right: 0,
-            height:     '1px',
-            background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
-            zIndex:     1,
+            paddingBlock:  'clamp(56px, 8vh, 96px)',
+            paddingInline: 'clamp(20px, 5vw, 72px)',
           }}
-        />
-        <div style={{ maxWidth: '960px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
-          <h2
-            className="font-bold tracking-tight mb-2"
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize:   'var(--text-h2)',
-              color:      'var(--silver-hi)',
-              lineHeight: 'var(--leading-snug)',
-            }}
-          >
-            Estimate your returns
-          </h2>
-          <p
-            style={{
-              fontFamily:   'var(--font-body)',
-              fontSize:     'var(--text-body)',
-              color:        'var(--silver-mid)',
-              lineHeight:   'var(--leading-normal)',
-              maxWidth:     '48ch',
-              marginBottom: 'clamp(2rem, 4vh, 3rem)',
-            }}
-          >
-            See indicative setup costs and annual earnings for your FOCO station. Numbers are illustrative. We will provide a detailed site-specific estimate after a brief call.
-          </p>
-          <FocoCalculator />
+        >
+          <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+            <h2
+              className="font-bold tracking-tight mb-2"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize:   'var(--text-h2)',
+                color:      'var(--silver-hi)',
+                lineHeight: 'var(--leading-snug)',
+              }}
+            >
+              Estimate your returns
+            </h2>
+            <p
+              style={{
+                fontFamily:   'var(--font-body)',
+                fontSize:     'var(--text-body)',
+                color:        'var(--silver-mid)',
+                lineHeight:   'var(--leading-normal)',
+                maxWidth:     '48ch',
+                marginBottom: 'clamp(2rem, 4vh, 3rem)',
+              }}
+            >
+              See indicative setup costs and annual earnings for your FOCO station. Numbers are illustrative. We will provide a detailed site-specific estimate after a brief call.
+            </p>
+            <FocoCalculator />
+          </div>
         </div>
-      </section>
+      </SectionWrapper>
 
       {/* How it works */}
       <ProcessStrip />

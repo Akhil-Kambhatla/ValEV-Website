@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
+import { SectionWrapper } from './SectionWrapper'
 
 const MODELS = [
   {
@@ -198,28 +199,32 @@ export function PartnerPage() {
       </BackdropSection>
 
       {/* Model cards */}
-      <section
-        style={{
-          backgroundColor: 'var(--bg-s2)',
-          paddingBlock:    'clamp(64px, 10vh, 96px)',
-          paddingInline:   'clamp(20px, 5vw, 72px)',
-          position:        'relative',
-          overflow:        'hidden',
-        }}
+      <SectionWrapper
+        bg="s2"
+        ambientLayer={
+          <>
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 60% 40% at 15% 20%, rgba(52,224,224,0.025), transparent)' }} />
+          </>
+        }
       >
-        {/* Ambient depth */}
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 60% 40% at 15% 20%, rgba(52,224,224,0.025), transparent)' }} />
-        <div style={{ maxWidth: '960px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
-          <div className="grid md:grid-cols-3 gap-6">
-            {MODELS.map(m => (
-              <ModelCard key={m.href} {...m} />
-            ))}
+        <div
+          style={{
+            paddingBlock:  'clamp(64px, 10vh, 96px)',
+            paddingInline: 'clamp(20px, 5vw, 72px)',
+          }}
+        >
+          <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+            <div className="grid md:grid-cols-3 gap-6">
+              {MODELS.map(m => (
+                <ModelCard key={m.href} {...m} />
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
     </>
   )
 }

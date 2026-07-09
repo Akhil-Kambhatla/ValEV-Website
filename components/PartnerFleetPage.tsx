@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { MessageCircle, CheckCircle2, ChevronLeft } from 'lucide-react'
 import { CONTACT, FLEET_SAVINGS_CALC } from '@/lib/constants'
+import { SectionWrapper, EASE } from './SectionWrapper'
 
 const waFleet =
   `${CONTACT.whatsappUrl}?text=Hi%20ValEV%2C%20I%20represent%20a%20bus%2Fcab%20fleet%20operation%20and%20want%20to%20discuss%20a%20charging%20partnership.`
@@ -110,192 +112,196 @@ function FleetSavingsCalc() {
   }
 
   return (
-    <section
-      style={{
-        paddingBlock:  'clamp(56px, 8vh, 88px)',
-        paddingInline: 'clamp(20px, 5vw, 72px)',
-        background:    'var(--bg-hero)',
-        borderTop:     '1px solid rgba(52,224,224,0.08)',
-        borderBottom:  '1px solid rgba(52,224,224,0.08)',
-        position:      'relative',
-        overflow:      'hidden',
-      }}
+    <SectionWrapper
+      bg="hero"
+      ambientLayer={
+        <>
+          <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+            background: 'radial-gradient(ellipse 75% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+            background: 'radial-gradient(ellipse 50% 35% at 10% 20%, rgba(52,224,224,0.022), transparent)' }} />
+          <div aria-hidden style={{ position: 'absolute', top: 0, insetInline: 0, height: '1px', backgroundColor: 'rgba(52,224,224,0.08)', zIndex: 0 }} />
+          <div aria-hidden style={{ position: 'absolute', bottom: 0, insetInline: 0, height: '1px', backgroundColor: 'rgba(52,224,224,0.08)', zIndex: 0 }} />
+        </>
+      }
     >
-      {/* Ambient depth */}
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        background: 'radial-gradient(ellipse 75% 55% at 50% 85%, rgba(52,224,224,0.04), transparent)' }} />
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        background: 'radial-gradient(ellipse 50% 35% at 10% 20%, rgba(52,224,224,0.022), transparent)' }} />
-      <div style={{ maxWidth: '720px', marginInline: 'auto', position: 'relative', zIndex: 1 }}>
-        <h2
-          className="font-bold tracking-tight mb-8"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize:   'var(--text-h2)',
-            color:      'var(--silver-hi)',
-            lineHeight: 'var(--leading-snug)',
-          }}
-        >
-          Estimate your savings
-        </h2>
+      <div
+        style={{
+          paddingBlock:  'clamp(56px, 8vh, 88px)',
+          paddingInline: 'clamp(20px, 5vw, 72px)',
+        }}
+      >
+        <div style={{ maxWidth: '720px', marginInline: 'auto' }}>
+          <h2
+            className="font-bold tracking-tight mb-8"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize:   'var(--text-h2)',
+              color:      'var(--silver-hi)',
+              lineHeight: 'var(--leading-snug)',
+            }}
+          >
+            Estimate your savings
+          </h2>
 
-        <div className="flex flex-col gap-7">
-          {/* Savings per charge */}
-          <div>
-            <span style={labelStyle}>Savings per charge (vs standard rates)</span>
-            <div className="flex gap-2 flex-wrap">
-              {savingsOptions.map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setSavings(opt)}
-                  style={savings === opt ? { ...pillBase, ...pillActive } : pillBase}
-                >
-                  ₹{opt.toLocaleString('en-IN')}
-                </button>
-              ))}
+          <div className="flex flex-col gap-7">
+            {/* Savings per charge */}
+            <div>
+              <span style={labelStyle}>Savings per charge (vs standard rates)</span>
+              <div className="flex gap-2 flex-wrap">
+                {savingsOptions.map(opt => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setSavings(opt)}
+                    style={savings === opt ? { ...pillBase, ...pillActive } : pillBase}
+                  >
+                    ₹{opt.toLocaleString('en-IN')}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Number of vehicles */}
+            <div>
+              <label
+                htmlFor="fleet-vehicles"
+                style={{
+                  ...labelStyle,
+                  display:        'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <span>Number of vehicles</span>
+                <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--cyan)' }}>{v}</span>
+              </label>
+              <input
+                id="fleet-vehicles"
+                type="range"
+                min={vehiclesMin}
+                max={vehiclesMax}
+                value={v}
+                onChange={e => setVehicles(Number(e.target.value))}
+                className="w-full"
+                style={{ accentColor: 'var(--cyan)' }}
+              />
+              <div
+                className="flex justify-between mt-1"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize:   '0.65rem',
+                  color:      'var(--silver-lo)',
+                }}
+              >
+                <span>{vehiclesMin}</span>
+                <span>{vehiclesMax}</span>
+              </div>
+            </div>
+
+            {/* Charges per week */}
+            <div>
+              <span style={labelStyle}>Charges per vehicle per week</span>
+              <div className="flex gap-2 flex-wrap">
+                {[1, 2, 3, 4, 5, 6, 7].map(n => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => setChargesPerWk(n)}
+                    style={chargesPerWk === n ? { ...pillBase, ...pillActive } : pillBase}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Number of vehicles */}
-          <div>
-            <label
-              htmlFor="fleet-vehicles"
-              style={{
-                ...labelStyle,
-                display:        'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-              <span>Number of vehicles</span>
-              <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--cyan)' }}>{v}</span>
-            </label>
-            <input
-              id="fleet-vehicles"
-              type="range"
-              min={vehiclesMin}
-              max={vehiclesMax}
-              value={v}
-              onChange={e => setVehicles(Number(e.target.value))}
-              className="w-full"
-              style={{ accentColor: 'var(--cyan)' }}
-            />
+          {/* Output */}
+          <div className="grid sm:grid-cols-2 gap-4 mt-8">
             <div
-              className="flex justify-between mt-1"
+              className="p-5 rounded-xl"
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize:   '0.65rem',
-                color:      'var(--silver-lo)',
+                background: 'rgba(7,8,10,0.60)',
+                border:     '1px solid rgba(52,224,224,0.10)',
               }}
             >
-              <span>{vehiclesMin}</span>
-              <span>{vehiclesMax}</span>
+              <p
+                style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '0.65rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color:         'var(--silver-lo)',
+                  marginBottom:  '8px',
+                }}
+              >
+                Monthly savings
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
+                  fontWeight: 700,
+                  color:      'var(--silver-hi)',
+                  lineHeight: 1,
+                }}
+              >
+                {monthly > 0 ? formatRupees(monthly) : '-'}
+              </p>
+            </div>
+
+            <div
+              className="p-5 rounded-xl"
+              style={{
+                background: 'rgba(52,224,224,0.07)',
+                border:     '1px solid rgba(52,224,224,0.25)',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily:    'var(--font-mono)',
+                  fontSize:      '0.65rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color:         'var(--cyan)',
+                  opacity:       0.7,
+                  marginBottom:  '8px',
+                }}
+              >
+                Yearly savings
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
+                  fontWeight: 700,
+                  color:      'var(--cyan)',
+                  lineHeight: 1,
+                }}
+              >
+                {yearly > 0 ? formatRupees(yearly) : '-'}
+              </p>
             </div>
           </div>
 
-          {/* Charges per week */}
-          <div>
-            <span style={labelStyle}>Charges per vehicle per week</span>
-            <div className="flex gap-2 flex-wrap">
-              {[1, 2, 3, 4, 5, 6, 7].map(n => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => setChargesPerWk(n)}
-                  style={chargesPerWk === n ? { ...pillBase, ...pillActive } : pillBase}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Output */}
-        <div className="grid sm:grid-cols-2 gap-4 mt-8">
-          <div
-            className="p-5 rounded-xl"
+          <p
+            className="mt-4"
             style={{
-              background: 'rgba(7,8,10,0.60)',
-              border:     '1px solid rgba(52,224,224,0.10)',
+              fontFamily: 'var(--font-body)',
+              fontSize:   '0.75rem',
+              color:      'var(--silver-lo)',
+              lineHeight: 'var(--leading-normal)',
             }}
           >
-            <p
-              style={{
-                fontFamily:    'var(--font-mono)',
-                fontSize:      '0.65rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color:         'var(--silver-lo)',
-                marginBottom:  '8px',
-              }}
-            >
-              Monthly savings
-            </p>
-            <p
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
-                fontWeight: 700,
-                color:      'var(--silver-hi)',
-                lineHeight: 1,
-              }}
-            >
-              {monthly > 0 ? formatRupees(monthly) : '-'}
-            </p>
+            {disclaimer}
+          </p>
+
+          <div className="mt-6">
+            <WaButton href={waUrl} label="Talk to us on WhatsApp" />
           </div>
-
-          <div
-            className="p-5 rounded-xl"
-            style={{
-              background: 'rgba(52,224,224,0.07)',
-              border:     '1px solid rgba(52,224,224,0.25)',
-            }}
-          >
-            <p
-              style={{
-                fontFamily:    'var(--font-mono)',
-                fontSize:      '0.65rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color:         'var(--cyan)',
-                opacity:       0.7,
-                marginBottom:  '8px',
-              }}
-            >
-              Yearly savings
-            </p>
-            <p
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize:   'clamp(1.4rem, 2.5vw, 1.75rem)',
-                fontWeight: 700,
-                color:      'var(--cyan)',
-                lineHeight: 1,
-              }}
-            >
-              {yearly > 0 ? formatRupees(yearly) : '-'}
-            </p>
-          </div>
-        </div>
-
-        <p
-          className="mt-4"
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize:   '0.75rem',
-            color:      'var(--silver-lo)',
-            lineHeight: 'var(--leading-normal)',
-          }}
-        >
-          {disclaimer}
-        </p>
-
-        <div className="mt-6">
-          <WaButton href={waUrl} label="Talk to us on WhatsApp" />
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 
@@ -324,94 +330,94 @@ const FLEET_STEPS = [
 
 function FleetProcessStrip() {
   return (
-    <section
-      style={{
-        paddingBlock:    'clamp(56px, 8vh, 88px)',
-        paddingInline:   'clamp(20px, 5vw, 72px)',
-        backgroundColor: 'var(--bg-s3)',
-        position:        'relative',
-        overflow:        'hidden',
-      }}
+    <SectionWrapper
+      bg="s3"
+      ambientLayer={
+        <>
+          <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+            background: 'radial-gradient(ellipse 80% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+            background: 'radial-gradient(ellipse 55% 40% at 85% 15%, rgba(52,224,224,0.018), transparent)' }} />
+        </>
+      }
     >
-      {/* Ambient depth */}
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        background: 'radial-gradient(ellipse 80% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
-      <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        background: 'radial-gradient(ellipse 55% 40% at 85% 15%, rgba(52,224,224,0.018), transparent)' }} />
       <div
-        aria-hidden
         style={{
-          height:     '1px',
-          background: 'linear-gradient(90deg, transparent 0%, rgba(52,224,224,0.10) 40%, rgba(52,224,224,0.16) 50%, rgba(52,224,224,0.10) 60%, transparent 100%)',
-          position:   'relative',
-          zIndex:     1,
+          paddingBlock:  'clamp(56px, 8vh, 88px)',
+          paddingInline: 'clamp(20px, 5vw, 72px)',
         }}
-      />
-      <div style={{ maxWidth: '960px', marginInline: 'auto', marginTop: '1px', position: 'relative', zIndex: 1 }}>
-        <h2
-          className="text-center mb-12 font-bold tracking-tight"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize:   'var(--text-h2)',
-            color:      'var(--silver-hi)',
-            lineHeight: 'var(--leading-snug)',
-          }}
-        >
-          From first conversation to first charge
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {FLEET_STEPS.map(({ n, title, body }) => (
-            <div
-              key={n}
-              className="flex flex-col gap-3 p-6 rounded-xl"
-              style={{
-                background: 'rgba(7,8,10,0.50)',
-                border:     '1px solid rgba(52,224,224,0.09)',
-              }}
-            >
-              <span
+      >
+        <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
+          <h2
+            className="text-center mb-12 font-bold tracking-tight"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize:   'var(--text-h2)',
+              color:      'var(--silver-hi)',
+              lineHeight: 'var(--leading-snug)',
+            }}
+          >
+            From first conversation to first charge
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {FLEET_STEPS.map(({ n, title, body }) => (
+              <div
+                key={n}
+                className="flex flex-col gap-3 p-6 rounded-xl"
                 style={{
-                  fontFamily:    'var(--font-mono)',
-                  fontSize:      '1.5rem',
-                  fontWeight:    700,
-                  color:         'var(--cyan)',
-                  opacity:       0.6,
-                  lineHeight:    1,
-                  letterSpacing: '0.02em',
+                  background: 'rgba(7,8,10,0.50)',
+                  border:     '1px solid rgba(52,224,224,0.09)',
                 }}
               >
-                {n}
-              </span>
-              <h3
-                className="font-semibold"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize:   '1rem',
-                  color:      'var(--silver-hi)',
-                  lineHeight: 'var(--leading-snug)',
-                }}
-              >
-                {title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize:   'var(--text-body-sm, 0.8125rem)',
-                  color:      'var(--silver-mid)',
-                  lineHeight: 'var(--leading-normal)',
-                }}
-              >
-                {body}
-              </p>
-            </div>
-          ))}
+                <span
+                  style={{
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '1.5rem',
+                    fontWeight:    700,
+                    color:         'var(--cyan)',
+                    opacity:       0.6,
+                    lineHeight:    1,
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  {n}
+                </span>
+                <h3
+                  className="font-semibold"
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize:   '1rem',
+                    color:      'var(--silver-hi)',
+                    lineHeight: 'var(--leading-snug)',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize:   'var(--text-body-sm, 0.8125rem)',
+                    color:      'var(--silver-mid)',
+                    lineHeight: 'var(--leading-normal)',
+                  }}
+                >
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 
 export function PartnerFleetPage() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const heroInView = useInView(heroRef, { once: true, amount: 0.08 })
+  const prefersReducedMotion = useReducedMotion()
+  const shouldRevealHero = !prefersReducedMotion
+
   return (
     <>
       {/* Hero */}
@@ -465,13 +471,21 @@ export function PartnerFleetPage() {
           }}
         />
 
-        <div
+        <motion.div
+          ref={heroRef}
           className="relative max-w-3xl mx-auto px-6 w-full"
           style={{
             zIndex:        10,
             paddingTop:    'clamp(96px, 14vh, 144px)',
             paddingBottom: 'clamp(64px, 10vh, 100px)',
           }}
+          initial={shouldRevealHero ? { opacity: 0, y: 24 } : false}
+          animate={
+            shouldRevealHero
+              ? { opacity: heroInView ? 1 : 0, y: heroInView ? 0 : 24 }
+              : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: 0.6, ease: EASE }}
         >
           <Link
             href="/partner"
@@ -505,22 +519,25 @@ export function PartnerFleetPage() {
           >
             ValEV works directly with bus and cab fleet operators to provide dedicated, preferential charging infrastructure placed exactly where your operations need it.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Fleet value props */}
-      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient depth */}
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.038), transparent)' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 40% 45% at 85% 12%, rgba(52,224,224,0.02), transparent)' }} />
-        <section
+      <SectionWrapper
+        bg="s2"
+        ambientLayer={
+          <>
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 85% 55% at 50% 85%, rgba(52,224,224,0.038), transparent)' }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 40% 45% at 85% 12%, rgba(52,224,224,0.02), transparent)' }} />
+          </>
+        }
+      >
+        <div
           style={{
             paddingBlock:  'clamp(56px, 8vh, 96px)',
             paddingInline: 'clamp(20px, 5vw, 72px)',
-            position:      'relative',
-            zIndex:        1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -701,8 +718,8 @@ export function PartnerFleetPage() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </SectionWrapper>
 
       {/* Savings calculator */}
       <FleetSavingsCalc />

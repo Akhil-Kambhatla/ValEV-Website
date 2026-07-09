@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { MessageCircle, CheckCircle2, ChevronLeft, Banknote, Zap, Layers } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { BackdropSection } from './BackdropSection'
+import { SectionWrapper } from './SectionWrapper'
 import { CONTACT } from '@/lib/constants'
 
 const waHost =
@@ -157,19 +158,22 @@ export function PartnerHostPage() {
       </BackdropSection>
 
       {/* Earning Options */}
-      <div style={{ backgroundColor: 'var(--bg-hero)', position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient depth */}
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 50% 90%, rgba(52,224,224,0.045), transparent)' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 50% 35% at 80% 15%, rgba(52,224,224,0.02), transparent)' }} />
-        <section
+      <SectionWrapper
+        bg="hero"
+        ambientLayer={
+          <>
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 80% 60% at 50% 90%, rgba(52,224,224,0.045), transparent)' }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 50% 35% at 80% 15%, rgba(52,224,224,0.02), transparent)' }} />
+          </>
+        }
+      >
+        <div
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
-            position:        'relative',
-            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -234,23 +238,26 @@ export function PartnerHostPage() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </SectionWrapper>
 
       {/* Host content */}
-      <div style={{ backgroundColor: 'var(--bg-s2)', position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient depth */}
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 90% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-          background: 'radial-gradient(ellipse 45% 45% at 90% 10%, rgba(52,224,224,0.02), transparent)' }} />
-        <section
+      <SectionWrapper
+        bg="s2"
+        ambientLayer={
+          <>
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 90% 50% at 50% 80%, rgba(52,224,224,0.035), transparent)' }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 45% 45% at 90% 10%, rgba(52,224,224,0.02), transparent)' }} />
+          </>
+        }
+      >
+        <div
           style={{
             paddingBlock:    'clamp(56px, 8vh, 96px)',
             paddingInline:   'clamp(20px, 5vw, 72px)',
             scrollMarginTop: '72px',
-            position:        'relative',
-            zIndex:          1,
           }}
         >
           <div style={{ maxWidth: '960px', marginInline: 'auto' }}>
@@ -358,8 +365,8 @@ export function PartnerHostPage() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </SectionWrapper>
     </>
   )
 }

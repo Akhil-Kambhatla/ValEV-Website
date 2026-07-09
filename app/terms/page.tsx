@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { FadeIn } from '@/components/FadeIn'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -30,6 +31,7 @@ export default function TermsPage() {
         }}
       />
 
+      <FadeIn>
       <div className="relative max-w-2xl mx-auto px-6 w-full">
 
         {/* Pre-launch note */}
@@ -183,6 +185,7 @@ export default function TermsPage() {
         </div>
 
       </div>
+      </FadeIn>
     </main>
   )
 }
