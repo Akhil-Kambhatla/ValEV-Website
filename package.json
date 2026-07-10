@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "a11y": "node a11y/axe-audit.mjs"
   },
   "dependencies": {
     "@svg-maps/india": "^2.0.0",
@@ -27,6 +28,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "playwright": "^1.61.1"
   }
 }
