@@ -51,12 +51,14 @@ const cardBase: React.CSSProperties = {
 }
 
 function SlotSelect({
+  id,
   label,
   value,
   onChange,
   required,
   disabled,
 }: {
+  id: string
   label: string
   value: SlotKw | null
   onChange: (v: SlotKw | null) => void
@@ -65,11 +67,12 @@ function SlotSelect({
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', opacity: disabled ? 0.38 : 1, transition: 'opacity 0.15s ease' }}>
-      <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--silver-mid)', cursor: disabled ? 'not-allowed' : 'default' }}>
+      <label htmlFor={id} style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--silver-mid)', cursor: disabled ? 'not-allowed' : 'default' }}>
         {label}
       </label>
       <div style={{ position: 'relative' }}>
         <select
+          id={id}
           disabled={disabled}
           value={value === null ? '' : String(value)}
           onChange={e => {
@@ -159,9 +162,9 @@ export function FocoCalculator() {
     >
       {/* Three independent machine-slot dropdowns */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '0.75rem' }}>
-        <SlotSelect label="Machine 1" value={slot1} onChange={v => v && setSlot1(v)} required />
-        <SlotSelect label="Machine 2" value={slot2} onChange={handleSlot2} />
-        <SlotSelect label="Machine 3" value={slot3} onChange={setSlot3} disabled={slot2 === null} />
+        <SlotSelect id="foco-slot-1" label="Machine 1" value={slot1} onChange={v => v && setSlot1(v)} required />
+        <SlotSelect id="foco-slot-2" label="Machine 2" value={slot2} onChange={handleSlot2} />
+        <SlotSelect id="foco-slot-3" label="Machine 3" value={slot3} onChange={setSlot3} disabled={slot2 === null} />
       </div>
 
       <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', color: 'var(--silver-lo)', lineHeight: 'var(--leading-relaxed)', marginBottom: '2rem' }}>

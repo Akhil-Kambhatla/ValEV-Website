@@ -183,7 +183,7 @@ function FleetSavingsCalc() {
                 onPointerUp={() => setIsDraggingVehicles(false)}
                 onPointerCancel={() => setIsDraggingVehicles(false)}
                 className="w-full"
-                style={{ accentColor: 'var(--cyan)' }}
+                style={{ accentColor: 'var(--cyan)', paddingBlock: '4px', boxSizing: 'content-box' }}
               />
               <div
                 className="flex justify-between mt-1"
