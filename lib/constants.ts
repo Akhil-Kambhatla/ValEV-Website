@@ -22,8 +22,8 @@ export const STATIONS: Station[] = [
     state:     'Andhra Pradesh',
     status:    'coming-soon',
     machines:  2,
-    latitude:  14.677964995449972,
-    longitude: 77.60121721534581,
+    latitude:  14.633149936259311,
+    longitude: 77.58975276771572,
   },
 ]
 
