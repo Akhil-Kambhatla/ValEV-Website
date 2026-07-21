@@ -277,7 +277,7 @@ export function Logo({
                 <motion.path
                   id="slash-2"
                   d={D_SLASH2}
-                  fill={`url(#${gradId})`}
+                  fill={C_CYAN}
                   stroke="none"
                   initial={shouldAnimate ? { opacity: 0 } : false}
                   animate={{ opacity: 1 }}
