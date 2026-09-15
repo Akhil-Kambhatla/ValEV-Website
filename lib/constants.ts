@@ -53,6 +53,13 @@ export const CONTACT = {
   linkedin: 'https://www.linkedin.com/company/val-ev/',
 }
 
+// ─── Legal ────────────────────────────────────────────────────────────────────
+// PLACEHOLDER — replace with registered office address and GSTIN before launch.
+export const LEGAL = {
+  registeredAddress: 'PLACEHOLDER_ADDRESS',
+  gstin:             'PLACEHOLDER_GSTIN',
+}
+
 // ─── Navigation ───────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: 'About',      href: '/about'      },
@@ -66,6 +73,7 @@ export const NAV_LINKS = [
 export const FOOTER_LINKS = [
   { label: 'Privacy policy', href: '/privacy' },
   { label: 'Terms of use',   href: '/terms'   },
+  { label: 'Refund policy',  href: '/refund'  },
 ] as const
 
 // ─── Map ──────────────────────────────────────────────────────────────────────

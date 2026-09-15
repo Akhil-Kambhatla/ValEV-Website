@@ -35,6 +35,7 @@ const ROUTES = [
   '/partner/fleet',
   '/privacy',
   '/terms',
+  '/refund',
 ]
 
 const PORT = 4173

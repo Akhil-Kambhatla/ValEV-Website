@@ -53,7 +53,7 @@ export function Footer() {
           >
             {BRAND.promise}
           </p>
-          <div className="flex gap-4 mt-auto pt-6">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 mt-auto pt-6">
             {FOOTER_LINKS.map(({ label, href }) => (
               <Link key={label} href={href} className="footer-link text-xs transition-colors duration-150">
                 {label}
